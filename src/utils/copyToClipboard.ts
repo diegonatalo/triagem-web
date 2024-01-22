@@ -1,5 +1,5 @@
 export const copyToClipboard = (screening: string) => {
-  var textarea = document.createElement('textarea')
+  const textarea = document.createElement('textarea')
   textarea.value = screening
   document.body.appendChild(textarea)
 

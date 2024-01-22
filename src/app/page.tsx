@@ -133,7 +133,7 @@ export default function Home() {
             <option value="Não">Não</option>
           </select>
 
-          <input placeholder="Marca/Modelo" required {...register("marcaModeloPontoAdicional")} />
+          <input placeholder="Marca/Modelo" {...register("marcaModeloPontoAdicional")} />
         </div>
 
         <div className="flex gap-3 w-full">

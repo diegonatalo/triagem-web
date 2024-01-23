@@ -18,7 +18,7 @@ export const generateScreening = (data: Screening) => {
     data.situacaoOnu +
     '\n-- Coletivo: ' +
     data.coletivo +
-    '\n-- Alarme: ' +
+    '\n-- Alarm History: ' +
     data.alarme +
     ' ' +
     data.alarmeDate +
@@ -28,20 +28,19 @@ export const generateScreening = (data: Screening) => {
     data.lineQuality +
     '\n-- Slot: ' +
     data.slot +
-    '     PON: ' +
+    '  PON: ' +
     data.pon +
-    '     ID: ' +
+    '  ID: ' +
     data.pon +
     '\n-- Sinal de envio: -' +
     data.envio +
-    'dBm     Retorno: -' +
+    'dBm  Retorno: -' +
     data.retorno +
-    'dBm     TX: ' +
+    'dBm  TX: ' +
     data.tx +
     'dBm' +
     '\n-- Cabo: ' +
     data.cabo +
-    'Mbps' +
     '\n-- PPPoE ' +
     data.situacaoPppoe +
     ': (' +
@@ -49,9 +48,7 @@ export const generateScreening = (data: Screening) => {
     ')' +
     '\n-- Segundo ponto: ' +
     data.pontoAdicional +
-    ' (' +
     data.marcaModeloPontoAdicional +
-    ')' +
     '\n-- Extrato de conexão: ' +
     data.quedas +
     ' Quedas constatadas' +

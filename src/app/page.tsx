@@ -55,9 +55,14 @@ export default function Home() {
 
           <select required {...register('olt')}>
             <option value="">OLT</option>
-            <option value="Itanhaém">Itanhaém</option>
-            <option value="Mongaguá">Mongaguá</option>
-            <option value="Peruíbe">Peruíbe</option>
+            <option value="ITA Centro">ITA Centro</option>
+            <option value="ITA Savoy">ITA Savoy</option>
+            <option value="ITA Umuarama">ITA Umuarama</option>
+            <option value="PRB Vila Erminda">PRB Vila Erminda</option>
+            <option value="PRB Três Marias">PRB Três Marias</option>
+            <option value="PRB Caraguava">PRB Caraguava</option>
+            <option value="MONG Agenor">MONG Agenor</option>
+            <option value="MONG Vera Cruz">MONG Vera Cruz</option>
           </select>
         </div>
 
@@ -122,7 +127,12 @@ export default function Home() {
 
           <input placeholder="TX" required {...register('tx')} />
 
-          <input placeholder="Cabo" required {...register('cabo')} />
+          <select required {...register('cabo')}>
+            <option value="">Cabo</option>
+            <option value="100Mbps">100Mbps</option>
+            <option value="1000Mbps">1000Mbps</option>
+            <option value="LAN off">LAN off</option>
+          </select>
         </div>
 
         <div className="flex w-full gap-3">

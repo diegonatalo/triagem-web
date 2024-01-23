@@ -29,6 +29,8 @@ export default function Home() {
   })
 
   const pontoAdicional = watch('pontoAdicional')
+  const gerenciador = watch('gerenciador')
+  const acessoRemoto = watch('acessoRemoto')
 
   return (
     <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center p-8">
@@ -83,12 +85,16 @@ export default function Home() {
             <option value="Sim">Sim</option>
           </select>
 
-          <select required {...register('lineQuality')}>
-            <option value="">Line Quality</option>
-            <option value="Sem erros">Sem erros</option>
-            <option value="Alarmando">Alarmando</option>
-            <option value="Alarmando -> Zerado">Alarmando {'->'} Zerado</option>
-          </select>
+          {gerenciador === 'U2000' && (
+            <select required {...register('lineQuality')}>
+              <option value="">Line Quality</option>
+              <option value="Sem erros">Sem erros</option>
+              <option value="Alarmando">Alarmando</option>
+              <option value="Alarmando -> Zerado">
+                Alarmando {'->'} Zerado
+              </option>
+            </select>
+          )}
         </div>
 
         <div className="flex w-full gap-3">
@@ -142,11 +148,13 @@ export default function Home() {
             <option value="(Sem Acesso Remoto)">Sem acesso</option>
           </select>
 
-          <input
-            placeholder="Marca/Modelo"
-            required
-            {...register('marcaModelo')}
-          />
+          {acessoRemoto === '+ Acesso Remoto' && (
+            <input
+              placeholder="Marca/Modelo"
+              required
+              {...register('marcaModelo')}
+            />
+          )}
         </div>
 
         <div className="flex w-full gap-3">
@@ -156,17 +164,20 @@ export default function Home() {
             <option value="Não">Não</option>
           </select>
 
-          <select required {...register('acessoRemoto2')}>
-            <option value="">Acesso Remoto</option>
-            <option value="+ Acesso Remoto">Com acesso</option>
-            <option value="(Sem Acesso Remoto)">Sem acesso</option>
-          </select>
-
           {pontoAdicional === 'Sim' && (
-            <input
-              placeholder="Marca/Modelo"
-              {...register('marcaModeloPontoAdicional')}
-            />
+            <>
+              <select required {...register('acessoRemoto2')}>
+                <option value="">Acesso Remoto</option>
+                <option value="+ Acesso Remoto">Com acesso</option>
+                <option value="(Sem Acesso Remoto)">Sem acesso</option>
+              </select>
+
+              <input
+                placeholder="Marca/Modelo"
+                required
+                {...register('marcaModeloPontoAdicional')}
+              />
+            </>
           )}
         </div>
 

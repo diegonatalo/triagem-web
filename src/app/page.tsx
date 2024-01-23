@@ -52,6 +52,7 @@ export default function Home() {
             <option value="ITA Savoy">ITA Savoy</option>
             <option value="ITA Gaivota">ITA Gaivota</option>
             <option value="ITA Umuarama">ITA Umuarama</option>
+            <option value="PRB Centro">PRB Centro</option>
             <option value="PRB Vila Erminda">PRB Vila Erminda</option>
             <option value="PRB Três Marias">PRB Três Marias</option>
             <option value="PRB Caraguava">PRB Caraguava</option>
@@ -63,7 +64,7 @@ export default function Home() {
         <div className="flex w-full gap-3">
           <select required {...register('onu')}>
             <option value="ONU">ONU</option>
-            <option value="ONT">ONT</option>
+            <option value="ONT">ONT (V)</option>
           </select>
 
           <select required {...register('modeloOnu')}>

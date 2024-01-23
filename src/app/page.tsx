@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast'
 
 export default function Home() {
-  const { register, handleSubmit, reset } = useForm<Screening>()
+  const { register, handleSubmit, reset, watch } = useForm<Screening>()
 
   const onSubmit = handleSubmit((data) => {
     const triagemFormatada = generateScreening(data)
@@ -27,6 +27,8 @@ export default function Home() {
 
     reset()
   })
+
+  const pontoAdicional = watch('pontoAdicional')
 
   return (
     <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center p-8">
@@ -101,10 +103,10 @@ export default function Home() {
         <div className="flex w-full gap-3">
           <select required {...register('alarme')}>
             <option value="">Alarme</option>
-            <option value="Link Loss (cod 1)">Link Loss</option>
-            <option value="Dying Gasp (cod 2)">Dying Gasp</option>
-            <option value="SUF (cod 3)">SUF</option>
-            <option value="DownBip BipUp (cod 4)">DownBip BipUp</option>
+            <option value="Link Loss (COD 1)">Link Loss</option>
+            <option value="Dying Gasp (COD 2)">Dying Gasp</option>
+            <option value="SUF (COD 3)">SUF</option>
+            <option value="DownBip BipUp (COD 4)">DownBip BipUp</option>
           </select>
 
           <input placeholder="Data" required {...register('alarmeDate')} />
@@ -156,10 +158,12 @@ export default function Home() {
             <option value="Não">Não</option>
           </select>
 
-          <input
-            placeholder="Marca/Modelo"
-            {...register('marcaModeloPontoAdicional')}
-          />
+          {pontoAdicional === 'Sim' && (
+            <input
+              placeholder="Marca/Modelo"
+              {...register('marcaModeloPontoAdicional')}
+            />
+          )}
         </div>
 
         <div className="flex w-full gap-3">

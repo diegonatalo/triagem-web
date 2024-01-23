@@ -1,6 +1,4 @@
 export type Screening = {
-  nome: string
-  telefone: string
   gerenciador: string
   olt: string
   onu: string
@@ -19,8 +17,10 @@ export type Screening = {
   tx: string
   cabo: string
   situacaoPppoe: string
+  acessoRemoto: string
   marcaModelo: string
   pontoAdicional: string
+  acessoRemoto2: string
   marcaModeloPontoAdicional: string
   quedas: string
   defeito: string

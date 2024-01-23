@@ -37,17 +37,6 @@ export default function Home() {
         onSubmit={onSubmit}
         autoComplete="off"
       >
-        <div className="flex w-full gap-3">
-          <input placeholder="Nome" required {...register('nome')} />
-
-          <input
-            placeholder="Telefone"
-            required
-            {...register('telefone')}
-            aria-autocomplete="none"
-          />
-        </div>
-
         <div className="flex w-full gap-4">
           <select required {...register('gerenciador')}>
             <option value="">Gerenciador</option>
@@ -59,6 +48,7 @@ export default function Home() {
             <option value="">OLT</option>
             <option value="ITA Centro">ITA Centro</option>
             <option value="ITA Savoy">ITA Savoy</option>
+            <option value="ITA Gaivota">ITA Gaivota</option>
             <option value="ITA Umuarama">ITA Umuarama</option>
             <option value="PRB Vila Erminda">PRB Vila Erminda</option>
             <option value="PRB Três Marias">PRB Três Marias</option>
@@ -96,6 +86,7 @@ export default function Home() {
           <select required {...register('lineQuality')}>
             <option value="">Line Quality</option>
             <option value="Sem erros">Sem erros</option>
+            <option value="Alarmando">Alarmando</option>
             <option value="Alarmando -> Zerado">Alarmando {'->'} Zerado</option>
           </select>
         </div>
@@ -107,6 +98,7 @@ export default function Home() {
             <option value="Dying Gasp (COD 2)">Dying Gasp</option>
             <option value="SUF (COD 3)">SUF</option>
             <option value="DownBip BipUp (COD 4)">DownBip BipUp</option>
+            <option value="Sem Alarme">Sem Alarme</option>
           </select>
 
           <input placeholder="Data" required {...register('alarmeDate')} />
@@ -144,6 +136,12 @@ export default function Home() {
             <option value="Inativo">Inativo</option>
           </select>
 
+          <select required {...register('acessoRemoto')}>
+            <option value="">Acesso Remoto</option>
+            <option value="+ Acesso Remoto">Com acesso</option>
+            <option value="(Sem Acesso Remoto)">Sem acesso</option>
+          </select>
+
           <input
             placeholder="Marca/Modelo"
             required
@@ -156,6 +154,12 @@ export default function Home() {
             <option value="">Segundo Ponto</option>
             <option value="Sim">Sim</option>
             <option value="Não">Não</option>
+          </select>
+
+          <select required {...register('acessoRemoto2')}>
+            <option value="">Acesso Remoto</option>
+            <option value="+ Acesso Remoto">Com acesso</option>
+            <option value="(Sem Acesso Remoto)">Sem acesso</option>
           </select>
 
           {pontoAdicional === 'Sim' && (

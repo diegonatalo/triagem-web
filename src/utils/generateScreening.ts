@@ -6,11 +6,7 @@ export const generateScreening = (data: Screening) => {
   }
 
   return (
-    'Nome: ' +
-    data.nome.toUpperCase() +
-    '  Telefone: ' +
-    data.telefone +
-    '\n\n-> Gerenciador: ' +
+    '-> Gerenciador: ' +
     data.gerenciador +
     '\n-> OLT: ' +
     data.olt +
@@ -47,11 +43,15 @@ export const generateScreening = (data: Screening) => {
     data.cabo +
     '\n-> PPPoE: ' +
     data.situacaoPppoe +
+    ' ' +
+    data.acessoRemoto +
     ' / ' +
     data.marcaModelo +
     '\n-> Segundo ponto: ' +
     data.pontoAdicional +
     ' ' +
+    data.acessoRemoto2 +
+    ' / ' +
     data.marcaModeloPontoAdicional +
     '\n-> Extrato de conexão: ' +
     data.quedas +

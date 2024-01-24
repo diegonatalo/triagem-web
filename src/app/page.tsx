@@ -142,12 +142,18 @@ export default function Home() {
 
             <input placeholder="Tx" required {...register('tx')} />
 
-            <select required {...register('cabo')}>
-              <option value="">Cabo</option>
-              <option value="100Mbps">100Mbps</option>
-              <option value="1000Mbps">1000Mbps</option>
-              <option value="LAN off">LAN off</option>
-            </select>
+            <input
+              list="caboList"
+              placeholder="Cabo"
+              required
+              {...register('cabo')}
+            />
+
+            <datalist id="caboList">
+              <option value="100Mbps"></option>
+              <option value="1000Mbps"></option>
+              <option value="LAN off"></option>
+            </datalist>
           </div>
         )}
 
@@ -163,10 +169,20 @@ export default function Home() {
           </select>
 
           <input
+            list="modelsList"
             placeholder="Marca/Modelo"
             required
             {...register('marcaModelo')}
           />
+
+          <datalist id="modelsList">
+            <option value="HUAWEI / AX2"></option>
+            <option value="HUAWEI / 5200"></option>
+            <option value="HUAWEI / EG8145V5-V2"></option>
+            <option value="TP-LINK / C5"></option>
+            <option value="TP-LINK / G5"></option>
+            <option value="TP-LINK / C20"></option>
+          </datalist>
         </div>
 
         <div className="flex w-full gap-3">
@@ -183,6 +199,7 @@ export default function Home() {
               </select>
 
               <input
+                list="modelsList"
                 placeholder="Marca/Modelo"
                 required
                 {...register('marcaModeloPontoAdicional')}

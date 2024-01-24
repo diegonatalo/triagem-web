@@ -28,12 +28,19 @@ export default function Home() {
     reset()
   })
 
-  const pontoAdicional = watch('pontoAdicional')
-  const gerenciador = watch('gerenciador')
-  const acessoRemoto = watch('acessoRemoto')
+  const gerenciador = watch('gerenciador') || 'U2000'
+  const status = watch('situacaoOnu') || 'Ativa'
+  const pontoAdicional = watch('pontoAdicional') || 'Não'
 
   return (
-    <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center p-8">
+    <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center gap-4 p-4">
+      <span className="text-center text-sm text-gray-600">
+        Made with 💙 by{' '}
+        <a href="https://diegonatalo.vercel.app" className="underline">
+          Diego Natalo
+        </a>{' '}
+        for my team
+      </span>
       <form
         className="flex w-full flex-col gap-3"
         onSubmit={onSubmit}
@@ -41,8 +48,9 @@ export default function Home() {
       >
         <div className="flex w-full gap-4">
           <select required {...register('gerenciador')}>
-            <option value="">Gerenciador</option>
-            <option value="U2000">U2000</option>
+            <option selected value="U2000">
+              U2000
+            </option>
             <option value="UNM2000">UNM2000</option>
           </select>
 
@@ -64,7 +72,7 @@ export default function Home() {
         <div className="flex w-full gap-3">
           <select required {...register('onu')}>
             <option value="ONU">ONU</option>
-            <option value="ONT">ONT (V)</option>
+            <option value="ONT">ONT (v2 / v5)</option>
           </select>
 
           <select required {...register('modeloOnu')}>
@@ -73,17 +81,18 @@ export default function Home() {
           </select>
 
           <select required {...register('situacaoOnu')}>
-            <option value="">Sit. ONU/ONT</option>
-            <option value="Ativa">Ativa</option>
-            <option value="Inativa">Inativa</option>
+            <option selected value="Ativa">
+              ✅ Ativa
+            </option>
+            <option value="Inativa">❌ Inativa</option>
           </select>
         </div>
 
         <div className="flex w-full gap-3">
           <select required {...register('coletivo')}>
             <option value="">Coletivo</option>
-            <option value="Não">Não</option>
-            <option value="Sim">Sim</option>
+            <option value="Não">❌ Coletivo</option>
+            <option value="Sim">✅ Coletivo</option>
           </select>
 
           {gerenciador === 'U2000' && (
@@ -108,9 +117,13 @@ export default function Home() {
             <option value="Sem Alarme">Sem Alarme</option>
           </select>
 
-          <input placeholder="Data" required {...register('alarmeDate')} />
+          {status === 'Ativa' && (
+            <>
+              <input placeholder="Data" required {...register('alarmeDate')} />
 
-          <input placeholder="Hora" required {...register('alarmeHour')} />
+              <input placeholder="Hora" required {...register('alarmeHour')} />
+            </>
+          )}
         </div>
 
         <div className="flex w-full gap-3">
@@ -121,56 +134,52 @@ export default function Home() {
           <input placeholder="ID" required {...register('id')} />
         </div>
 
-        <div className="flex w-full gap-3">
-          <input placeholder="Envio" required {...register('envio')} />
+        {status === 'Ativa' && (
+          <div className="flex w-full gap-3">
+            <input placeholder="Envio" required {...register('envio')} />
 
-          <input placeholder="Retorno" required {...register('retorno')} />
+            <input placeholder="Retorno" required {...register('retorno')} />
 
-          <input placeholder="TX" required {...register('tx')} />
+            <input placeholder="Tx" required {...register('tx')} />
 
-          <select required {...register('cabo')}>
-            <option value="">Cabo</option>
-            <option value="100Mbps">100Mbps</option>
-            <option value="1000Mbps">1000Mbps</option>
-            <option value="LAN off">LAN off</option>
-          </select>
-        </div>
+            <select required {...register('cabo')}>
+              <option value="">Cabo</option>
+              <option value="100Mbps">100Mbps</option>
+              <option value="1000Mbps">1000Mbps</option>
+              <option value="LAN off">LAN off</option>
+            </select>
+          </div>
+        )}
 
         <div className="flex w-full gap-3">
           <select required {...register('situacaoPppoe')}>
-            <option value="">Sit. PPPoE</option>
-            <option value="Ativo">Ativo</option>
-            <option value="Inativo">Inativo</option>
+            <option value="Ativo">✅ PPPoE</option>
+            <option value="Inativo">❌ PPPoE</option>
           </select>
 
           <select required {...register('acessoRemoto')}>
-            <option value="">Acesso Remoto</option>
-            <option value="+ Acesso Remoto">Com acesso</option>
-            <option value="(Sem Acesso Remoto)">Sem acesso</option>
+            <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
+            <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
           </select>
 
-          {acessoRemoto === '+ Acesso Remoto' && (
-            <input
-              placeholder="Marca/Modelo"
-              required
-              {...register('marcaModelo')}
-            />
-          )}
+          <input
+            placeholder="Marca/Modelo"
+            required
+            {...register('marcaModelo')}
+          />
         </div>
 
         <div className="flex w-full gap-3">
           <select required {...register('pontoAdicional')}>
-            <option value="">Segundo Ponto</option>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
+            <option value="Não">❌ Segundo Ponto</option>
+            <option value="Sim">✅ Segundo Ponto</option>
           </select>
 
           {pontoAdicional === 'Sim' && (
             <>
               <select required {...register('acessoRemoto2')}>
-                <option value="">Acesso Remoto</option>
-                <option value="+ Acesso Remoto">Com acesso</option>
-                <option value="(Sem Acesso Remoto)">Sem acesso</option>
+                <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
+                <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
               </select>
 
               <input

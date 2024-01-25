@@ -30,6 +30,8 @@ export default function Home() {
 
   const gerenciador = watch('gerenciador') || 'U2000'
   const status = watch('situacaoOnu') || 'Ativa'
+  const pppoe = watch('situacaoPppoe') || 'Ativo'
+  const acessoRemoto = watch('acessoRemoto') || '+ Acesso Remoto'
   const pontoAdicional = watch('pontoAdicional') || 'Não'
 
   return (
@@ -163,17 +165,21 @@ export default function Home() {
             <option value="Inativo">❌ PPPoE</option>
           </select>
 
-          <select required {...register('acessoRemoto')}>
-            <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
-            <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
-          </select>
+          {pppoe === 'Ativo' && (
+            <select required {...register('acessoRemoto')}>
+              <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
+              <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
+            </select>
+          )}
 
-          <input
-            list="modelsList"
-            placeholder="Marca/Modelo"
-            required
-            {...register('marcaModelo')}
-          />
+          {pppoe === 'Ativo' && acessoRemoto === '+ Acesso Remoto' && (
+            <input
+              list="modelsList"
+              placeholder="Marca/Modelo"
+              required
+              {...register('marcaModelo')}
+            />
+          )}
 
           <datalist id="modelsList">
             <option value="HUAWEI / AX2"></option>

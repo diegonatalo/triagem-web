@@ -1,4 +1,4 @@
-import { Screening } from '@/@types/screening'
+import { Screening, TrocaDeSenha } from '@/@types/screening'
 
 export const generateScreening = (data: Screening) => {
   let screening = ''
@@ -42,14 +42,18 @@ export const generateScreening = (data: Screening) => {
     screening += '-> Cabo: ' + data.cabo + '\n'
   }
 
-  screening +=
-    '-> PPPoE: ' +
-    data.situacaoPppoe +
-    ' ' +
-    data.acessoRemoto +
-    ' / ' +
-    data.marcaModelo +
-    '\n'
+  if (data.situacaoPppoe === 'Ativo') {
+    screening +=
+      '-> PPPoE: ' +
+      data.situacaoPppoe +
+      ' ' +
+      data.acessoRemoto +
+      ' / ' +
+      data.marcaModelo +
+      '\n'
+  } else {
+    screening += '-> PPPoE: ' + data.situacaoPppoe
+  }
 
   if (data.pontoAdicional === 'Sim') {
     screening +=
@@ -69,4 +73,12 @@ export const generateScreening = (data: Screening) => {
   screening += 'Defeito reclamado: ' + data.defeito
 
   return screening
+}
+
+export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
+  let trocaDeSenha = ''
+
+  trocaDeSenha += data.senhaAntiga
+
+  return trocaDeSenha
 }

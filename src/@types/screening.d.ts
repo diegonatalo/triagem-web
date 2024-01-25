@@ -25,3 +25,17 @@ export type Screening = {
   quedas: string
   defeito: string
 }
+
+export type TrocaDeSenha = {
+  senhaAntiga: string
+  senhaNova: string
+  trocaDeNome: string
+  nomeAntigo?: string
+  nomeNovo?: string
+  pontoAdicional: string
+  senhaAntigaPontoAdicional?: string
+  senhaNovaPontoAdicional?: string
+  trocaDeNomePontoAdicional?: string
+  nomeAntigoPontoAdicional?: string
+  nomeNovoPontoAdicional?: string
+}

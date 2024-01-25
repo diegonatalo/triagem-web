@@ -4,7 +4,7 @@ import { Screening } from '@/@types/screening'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 import { generateScreening } from '@/utils/generateScreening'
 import { useForm } from 'react-hook-form'
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 export default function Home() {
   const { register, handleSubmit, reset, watch } = useForm<Screening>()
@@ -35,210 +35,197 @@ export default function Home() {
   const pontoAdicional = watch('pontoAdicional') || 'Não'
 
   return (
-    <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center gap-4 p-4">
-      <span className="text-center text-sm text-gray-600">
-        Made with 💙 by{' '}
-        <a href="https://diegonatalo.vercel.app" className="underline">
-          Diego Natalo
-        </a>{' '}
-        for my team
-      </span>
-      <form
-        className="flex w-full flex-col gap-3"
-        onSubmit={onSubmit}
-        autoComplete="off"
-      >
-        <div className="flex w-full gap-4">
-          <select required {...register('gerenciador')}>
-            <option selected value="U2000">
-              U2000
-            </option>
-            <option value="UNM2000">UNM2000</option>
+    <form
+      className="flex w-full flex-col gap-3"
+      onSubmit={onSubmit}
+      autoComplete="off"
+    >
+      <div className="flex w-full gap-4">
+        <select required {...register('gerenciador')}>
+          <option selected value="U2000">
+            U2000
+          </option>
+          <option value="UNM2000">UNM2000</option>
+        </select>
+
+        <select required {...register('olt')}>
+          <option value="">OLT</option>
+          <option value="ITA Centro">ITA Centro</option>
+          <option value="ITA Savoy">ITA Savoy</option>
+          <option value="ITA Gaivota">ITA Gaivota</option>
+          <option value="ITA Umuarama">ITA Umuarama</option>
+          <option value="PRB Centro">PRB Centro</option>
+          <option value="PRB Vila Erminda">PRB Vila Erminda</option>
+          <option value="PRB Três Marias">PRB Três Marias</option>
+          <option value="PRB Caraguava">PRB Caraguava</option>
+          <option value="MONG Agenor">MONG Agenor</option>
+          <option value="MONG Vera Cruz">MONG Vera Cruz</option>
+        </select>
+      </div>
+
+      <div className="flex w-full gap-3">
+        <select required {...register('onu')}>
+          <option value="ONU">ONU</option>
+          <option value="ONT">ONT (v2 / v5)</option>
+        </select>
+
+        <select required {...register('modeloOnu')}>
+          <option value="Huawei">Huawei</option>
+          <option value="Fiberhome">Fiberhome</option>
+        </select>
+
+        <select required {...register('situacaoOnu')}>
+          <option selected value="Ativa">
+            ✅ Ativa
+          </option>
+          <option value="Inativa">❌ Inativa</option>
+        </select>
+      </div>
+
+      <div className="flex w-full gap-3">
+        <select required {...register('coletivo')}>
+          <option value="">Coletivo</option>
+          <option value="Não">❌ Coletivo</option>
+          <option value="Sim">✅ Coletivo</option>
+        </select>
+
+        {gerenciador === 'U2000' && (
+          <select required {...register('lineQuality')}>
+            <option value="">Line Quality</option>
+            <option value="Sem erros">Sem erros</option>
+            <option value="Alarmando">Alarmando</option>
+            <option value="Alarmando -> Zerado">Alarmando {'->'} Zerado</option>
           </select>
+        )}
+      </div>
 
-          <select required {...register('olt')}>
-            <option value="">OLT</option>
-            <option value="ITA Centro">ITA Centro</option>
-            <option value="ITA Savoy">ITA Savoy</option>
-            <option value="ITA Gaivota">ITA Gaivota</option>
-            <option value="ITA Umuarama">ITA Umuarama</option>
-            <option value="PRB Centro">PRB Centro</option>
-            <option value="PRB Vila Erminda">PRB Vila Erminda</option>
-            <option value="PRB Três Marias">PRB Três Marias</option>
-            <option value="PRB Caraguava">PRB Caraguava</option>
-            <option value="MONG Agenor">MONG Agenor</option>
-            <option value="MONG Vera Cruz">MONG Vera Cruz</option>
-          </select>
-        </div>
-
-        <div className="flex w-full gap-3">
-          <select required {...register('onu')}>
-            <option value="ONU">ONU</option>
-            <option value="ONT">ONT (v2 / v5)</option>
-          </select>
-
-          <select required {...register('modeloOnu')}>
-            <option value="Huawei">Huawei</option>
-            <option value="Fiberhome">Fiberhome</option>
-          </select>
-
-          <select required {...register('situacaoOnu')}>
-            <option selected value="Ativa">
-              ✅ Ativa
-            </option>
-            <option value="Inativa">❌ Inativa</option>
-          </select>
-        </div>
-
-        <div className="flex w-full gap-3">
-          <select required {...register('coletivo')}>
-            <option value="">Coletivo</option>
-            <option value="Não">❌ Coletivo</option>
-            <option value="Sim">✅ Coletivo</option>
-          </select>
-
-          {gerenciador === 'U2000' && (
-            <select required {...register('lineQuality')}>
-              <option value="">Line Quality</option>
-              <option value="Sem erros">Sem erros</option>
-              <option value="Alarmando">Alarmando</option>
-              <option value="Alarmando -> Zerado">
-                Alarmando {'->'} Zerado
-              </option>
-            </select>
-          )}
-        </div>
-
-        <div className="flex w-full gap-3">
-          <select required {...register('alarme')}>
-            <option value="">Alarme</option>
-            <option value="Link Loss (COD 1)">Link Loss</option>
-            <option value="Dying Gasp (COD 2)">Dying Gasp</option>
-            <option value="SUF (COD 3)">SUF</option>
-            <option value="DownBip BipUp (COD 4)">DownBip BipUp</option>
-            <option value="Sem Alarme">Sem Alarme</option>
-          </select>
-
-          {status === 'Ativa' && (
-            <>
-              <input placeholder="Data" required {...register('alarmeDate')} />
-
-              <input placeholder="Hora" required {...register('alarmeHour')} />
-            </>
-          )}
-        </div>
-
-        <div className="flex w-full gap-3">
-          <input placeholder="Slot" required {...register('slot')} />
-
-          <input placeholder="PON" required {...register('pon')} />
-
-          <input placeholder="ID" required {...register('id')} />
-        </div>
+      <div className="flex w-full gap-3">
+        <select required {...register('alarme')}>
+          <option value="">Alarme</option>
+          <option value="Link Loss (COD 1)">Link Loss</option>
+          <option value="Dying Gasp (COD 2)">Dying Gasp</option>
+          <option value="SUF (COD 3)">SUF</option>
+          <option value="DownBip BipUp (COD 4)">DownBip BipUp</option>
+          <option value="Sem Alarme">Sem Alarme</option>
+        </select>
 
         {status === 'Ativa' && (
-          <div className="flex w-full gap-3">
-            <input placeholder="Envio" required {...register('envio')} />
+          <>
+            <input placeholder="Data" required {...register('alarmeDate')} />
 
-            <input placeholder="Retorno" required {...register('retorno')} />
+            <input placeholder="Hora" required {...register('alarmeHour')} />
+          </>
+        )}
+      </div>
 
-            <input placeholder="Tx" required {...register('tx')} />
+      <div className="flex w-full gap-3">
+        <input placeholder="Slot" required {...register('slot')} />
 
-            <input
-              list="caboList"
-              placeholder="Cabo"
-              required
-              {...register('cabo')}
-            />
+        <input placeholder="PON" required {...register('pon')} />
 
-            <datalist id="caboList">
-              <option value="100Mbps"></option>
-              <option value="1000Mbps"></option>
-              <option value="LAN off"></option>
-            </datalist>
-          </div>
+        <input placeholder="ID" required {...register('id')} />
+      </div>
+
+      {status === 'Ativa' && (
+        <div className="flex w-full gap-3">
+          <input placeholder="Envio" required {...register('envio')} />
+
+          <input placeholder="Retorno" required {...register('retorno')} />
+
+          <input placeholder="Tx" required {...register('tx')} />
+
+          <input
+            list="caboList"
+            placeholder="Cabo"
+            required
+            {...register('cabo')}
+          />
+
+          <datalist id="caboList">
+            <option value="100Mbps"></option>
+            <option value="1000Mbps"></option>
+            <option value="LAN off"></option>
+          </datalist>
+        </div>
+      )}
+
+      <div className="flex w-full gap-3">
+        <select required {...register('situacaoPppoe')}>
+          <option value="Ativo">✅ PPPoE</option>
+          <option value="Inativo">❌ PPPoE</option>
+        </select>
+
+        {pppoe === 'Ativo' && (
+          <select required {...register('acessoRemoto')}>
+            <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
+            <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
+          </select>
         )}
 
-        <div className="flex w-full gap-3">
-          <select required {...register('situacaoPppoe')}>
-            <option value="Ativo">✅ PPPoE</option>
-            <option value="Inativo">❌ PPPoE</option>
-          </select>
+        {pppoe === 'Ativo' && acessoRemoto === '+ Acesso Remoto' && (
+          <input
+            list="modelsList"
+            placeholder="Marca/Modelo"
+            required
+            {...register('marcaModelo')}
+          />
+        )}
 
-          {pppoe === 'Ativo' && (
-            <select required {...register('acessoRemoto')}>
+        <datalist id="modelsList">
+          <option value="HUAWEI / AX2"></option>
+          <option value="HUAWEI / 5200"></option>
+          <option value="HUAWEI / EG8145V5-V2"></option>
+          <option value="TP-LINK / C5"></option>
+          <option value="TP-LINK / G5"></option>
+          <option value="TP-LINK / C20"></option>
+        </datalist>
+      </div>
+
+      <div className="flex w-full gap-3">
+        <select required {...register('pontoAdicional')}>
+          <option value="Não">❌ Segundo Ponto</option>
+          <option value="Sim">✅ Segundo Ponto</option>
+        </select>
+
+        {pontoAdicional === 'Sim' && (
+          <>
+            <select required {...register('acessoRemoto2')}>
               <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
               <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
             </select>
-          )}
 
-          {pppoe === 'Ativo' && acessoRemoto === '+ Acesso Remoto' && (
             <input
               list="modelsList"
               placeholder="Marca/Modelo"
               required
-              {...register('marcaModelo')}
+              {...register('marcaModeloPontoAdicional')}
             />
-          )}
+          </>
+        )}
+      </div>
 
-          <datalist id="modelsList">
-            <option value="HUAWEI / AX2"></option>
-            <option value="HUAWEI / 5200"></option>
-            <option value="HUAWEI / EG8145V5-V2"></option>
-            <option value="TP-LINK / C5"></option>
-            <option value="TP-LINK / G5"></option>
-            <option value="TP-LINK / C20"></option>
-          </datalist>
-        </div>
+      <div className="flex w-full gap-3">
+        <input
+          placeholder="Quantidade de Quedas"
+          required
+          {...register('quedas')}
+        />
 
-        <div className="flex w-full gap-3">
-          <select required {...register('pontoAdicional')}>
-            <option value="Não">❌ Segundo Ponto</option>
-            <option value="Sim">✅ Segundo Ponto</option>
-          </select>
+        <input
+          placeholder="Defeito Reclamado"
+          required
+          {...register('defeito')}
+        />
+      </div>
 
-          {pontoAdicional === 'Sim' && (
-            <>
-              <select required {...register('acessoRemoto2')}>
-                <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
-                <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
-              </select>
-
-              <input
-                list="modelsList"
-                placeholder="Marca/Modelo"
-                required
-                {...register('marcaModeloPontoAdicional')}
-              />
-            </>
-          )}
-        </div>
-
-        <div className="flex w-full gap-3">
-          <input
-            placeholder="Quantidade de Quedas"
-            required
-            {...register('quedas')}
-          />
-
-          <input
-            placeholder="Defeito Reclamado"
-            required
-            {...register('defeito')}
-          />
-        </div>
-
-        <div className="flex w-full">
-          <button
-            className="w-full rounded-lg bg-sky-500/80 p-4 text-lg font-bold text-gray-100 opacity-80 hover:opacity-100"
-            type="submit"
-          >
-            Gerar Triagem
-          </button>
-        </div>
-      </form>
-
-      <Toaster position="bottom-center" />
-    </main>
+      <div className="flex w-full">
+        <button
+          className="w-full rounded-lg bg-sky-500/80 p-4 text-lg font-bold text-gray-100 opacity-80 hover:opacity-100"
+          type="submit"
+        >
+          Gerar Triagem
+        </button>
+      </div>
+    </form>
   )
 }

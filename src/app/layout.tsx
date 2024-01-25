@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -16,7 +17,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center gap-4 p-4">
+          <span className="text-center text-sm text-gray-600">
+            Made with 💙 by{' '}
+            <a href="https://diegonatalo.vercel.app" className="underline">
+              Diego Natalo
+            </a>{' '}
+            for my team
+          </span>
+          {children}
+
+          <Toaster position="bottom-center" />
+        </main>
+      </body>
     </html>
   )
 }

@@ -5,6 +5,7 @@ export type Screening = {
   modeloOnu: string
   situacaoOnu: string
   coletivo: string
+  nomeColetivo: string
   alarme: string
   alarmeDate?: string
   alarmeHour?: string

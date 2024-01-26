@@ -7,7 +7,13 @@ export const generateScreening = (data: Screening) => {
   screening += '-> OLT: ' + data.olt + '\n'
   screening +=
     '-> ' + data.onu + ' - ' + data.modeloOnu + ': ' + data.situacaoOnu + '\n'
-  screening += '-> Coletivo: ' + data.coletivo + '\n'
+
+  if (data.coletivo === 'Sim') {
+    screening +=
+      '-> Coletivo: ' + data.coletivo + ' / ' + data.nomeColetivo + '\n'
+  } else {
+    screening += '-> Coletivo: ' + data.coletivo + '\n'
+  }
 
   if (data.situacaoOnu === 'Ativa') {
     screening +=

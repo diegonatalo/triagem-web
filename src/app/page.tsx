@@ -30,6 +30,7 @@ export default function Home() {
 
   const gerenciador = watch('gerenciador') || 'U2000'
   const status = watch('situacaoOnu') || 'Ativa'
+  const coletivo = watch('coletivo') || 'Não'
   const pppoe = watch('situacaoPppoe') || 'Ativo'
   const acessoRemoto = watch('acessoRemoto') || '+ Acesso Remoto'
   const pontoAdicional = watch('pontoAdicional') || 'Não'
@@ -89,6 +90,14 @@ export default function Home() {
           <option value="Sim">✅ Coletivo</option>
         </select>
 
+        {coletivo === 'Sim' && (
+          <input
+            placeholder="Nome do coletivo"
+            required
+            {...register('nomeColetivo')}
+          />
+        )}
+
         {gerenciador === 'U2000' && (
           <select required {...register('lineQuality')}>
             <option value="">Line Quality</option>
@@ -111,9 +120,9 @@ export default function Home() {
 
         {status === 'Ativa' && (
           <>
-            <input placeholder="Data" required {...register('alarmeDate')} />
+            <input placeholder="Data" {...register('alarmeDate')} />
 
-            <input placeholder="Hora" required {...register('alarmeHour')} />
+            <input placeholder="Hora" {...register('alarmeHour')} />
           </>
         )}
       </div>

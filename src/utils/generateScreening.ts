@@ -52,7 +52,7 @@ export const generateScreening = (data: Screening) => {
       data.marcaModelo +
       '\n'
   } else {
-    screening += '-> PPPoE: ' + data.situacaoPppoe
+    screening += '-> PPPoE: ' + data.situacaoPppoe + '\n'
   }
 
   if (data.pontoAdicional === 'Sim') {

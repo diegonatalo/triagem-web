@@ -23,5 +23,5 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-900 rounded-[20px] bg-clip-content
+  @apply bg-sky-500/50 rounded-[20px] bg-clip-content
 }

@@ -1,13 +1,14 @@
 'use client'
 
 import { TrocaDeSenha } from '@/@types/screening'
+import { Button } from '@/components/button'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 import { generateTrocaDeSenha } from '@/utils/generateMessage'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 export default function TrocaDeSenha() {
-  const { register, handleSubmit, reset } = useForm<TrocaDeSenha>()
+  const { register, handleSubmit, reset, watch } = useForm<TrocaDeSenha>()
 
   const onSubmit = handleSubmit((data) => {
     const triagemFormatada = generateTrocaDeSenha(data)
@@ -28,6 +29,9 @@ export default function TrocaDeSenha() {
     reset()
   })
 
+  const trocarNome = watch('trocaDeNome') || 'Não'
+  const ponto = watch('trocaDeNome') || '1° ponto'
+
   return (
     <form
       className="flex w-full flex-col gap-3"
@@ -39,6 +43,12 @@ export default function TrocaDeSenha() {
           <option>Origem do contato</option>
           <option value="ligação">Ligação</option>
           <option value="smart">Smart</option>
+        </select>
+
+        <select required {...register('ponto')}>
+          <option value="1° ponto">Apenas 1° ponto</option>
+          <option value="2° ponto">Apenas 2° ponto</option>
+          <option value="Ambos">Ambos</option>
         </select>
       </div>
 
@@ -59,11 +69,19 @@ export default function TrocaDeSenha() {
         </select>
       </div>
 
-      <div className="flex w-full gap-4">
-        <input placeholder="Nome antigo" required {...register('nomeAntigo')} />
+      {trocarNome === 'Sim' && (
+        <div className="flex w-full gap-4">
+          <input
+            placeholder="Nome antigo"
+            required
+            {...register('nomeAntigo')}
+          />
 
-        <input placeholder="Nome novo" required {...register('nomeNovo')} />
-      </div>
+          <input placeholder="Nome novo" required {...register('nomeNovo')} />
+        </div>
+      )}
+
+      <Button />
     </form>
   )
 }

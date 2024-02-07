@@ -1,6 +1,7 @@
 'use client'
 
 import { Triagem } from '@/@types/screening'
+import { Button } from '@/components/button'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 import { generateScreening } from '@/utils/generateMessage'
 import { useForm } from 'react-hook-form'
@@ -235,12 +236,7 @@ export default function Home() {
       </div>
 
       <div className="flex w-full">
-        <button
-          className="w-full rounded-lg bg-sky-500/80 p-4 text-lg font-bold text-gray-100 opacity-80 hover:opacity-100"
-          type="submit"
-        >
-          Gerar Triagem
-        </button>
+        <Button />
       </div>
     </form>
   )

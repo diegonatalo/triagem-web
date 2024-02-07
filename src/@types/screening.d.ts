@@ -29,6 +29,7 @@ export type Triagem = {
 
 export type TrocaDeSenha = {
   canal: string
+  ponto: string
   senhaAntiga: string
   senhaNova: string
   trocaDeNome: string

@@ -222,9 +222,16 @@ export default function Home() {
 
         <input
           placeholder="Defeito Reclamado"
+          list="defeito"
           required
           {...register('defeito')}
         />
+
+        <datalist id="defeito">
+          <option value="Lentidão"></option>
+          <option value="Sem conexão"></option>
+          <option value="Oscilação"></option>
+        </datalist>
       </div>
 
       <div className="flex w-full">

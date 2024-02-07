@@ -1,13 +1,13 @@
 'use client'
 
-import { Screening } from '@/@types/screening'
+import { Triagem } from '@/@types/screening'
 import { copyToClipboard } from '@/utils/copyToClipboard'
-import { generateScreening } from '@/utils/generateScreening'
+import { generateScreening } from '@/utils/generateMessage'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 export default function Home() {
-  const { register, handleSubmit, reset, watch } = useForm<Screening>()
+  const { register, handleSubmit, reset, watch } = useForm<Triagem>()
 
   const onSubmit = handleSubmit((data) => {
     const triagemFormatada = generateScreening(data)

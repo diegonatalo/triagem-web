@@ -1,4 +1,4 @@
-export type Screening = {
+export type Triagem = {
   gerenciador: string
   olt: string
   onu: string
@@ -28,6 +28,7 @@ export type Screening = {
 }
 
 export type TrocaDeSenha = {
+  canal: string
   senhaAntiga: string
   senhaNova: string
   trocaDeNome: string
@@ -39,4 +40,22 @@ export type TrocaDeSenha = {
   trocaDeNomePontoAdicional?: string
   nomeAntigoPontoAdicional?: string
   nomeNovoPontoAdicional?: string
+}
+
+export type ConfigRoteador = {
+  ponto: string
+  marca: string
+  modelo: string
+  mac: string
+  serial: string
+  pppoe: string
+  senhaPppoe: string
+  ssid2g: string
+  senha2g: string
+  ssid5g: string
+  senha5g: string
+  portaAcessoRemoto: string
+  senhaAcessoRemoto: string
+  ipBase: string
+  portasLiberadas?: string
 }

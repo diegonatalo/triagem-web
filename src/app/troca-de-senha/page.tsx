@@ -2,7 +2,7 @@
 
 import { TrocaDeSenha } from '@/@types/screening'
 import { copyToClipboard } from '@/utils/copyToClipboard'
-import { generateTrocaDeSenha } from '@/utils/generateScreening'
+import { generateTrocaDeSenha } from '@/utils/generateMessage'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -29,32 +29,41 @@ export default function TrocaDeSenha() {
   })
 
   return (
-    <>
-      <div className="flex w-full flex-col gap-3">
-        <div className="w-full bg-gray-800 p-4 opacity-70">
-          <p>
-            Me informe a senha que deseja colocar. A senha deve ter no mínimo *
-            8 caracteres e não deve conter espaços ou acentos
-            <br />* 🛑 * ATENÇÃO * 🛑 * Após a troca de senha será necessário
-            reconectar todos os dispositivos com a nova senha. *
-          </p>
-        </div>
+    <form
+      className="flex w-full flex-col gap-3"
+      onSubmit={onSubmit}
+      autoComplete="off"
+    >
+      <div className="flex w-full gap-4">
+        <select required {...register('canal')}>
+          <option>Origem do contato</option>
+          <option value="ligação">Ligação</option>
+          <option value="smart">Smart</option>
+        </select>
       </div>
-      <form
-        className="flex w-full flex-col gap-3"
-        onSubmit={onSubmit}
-        autoComplete="off"
-      >
-        <div className="flex w-full gap-4">
-          <input
-            placeholder="Senha antiga"
-            required
-            {...register('senhaAntiga')}
-          />
 
-          <input placeholder="Senha nova" required {...register('senhaNova')} />
-        </div>
-      </form>
-    </>
+      <div className="flex w-full gap-4">
+        <input
+          placeholder="Senha antiga"
+          required
+          {...register('senhaAntiga')}
+        />
+
+        <input placeholder="Senha nova" required {...register('senhaNova')} />
+      </div>
+
+      <div className="flex w-full gap-4">
+        <select required {...register('trocaDeNome')}>
+          <option value="Não">❌ Troca de nome</option>
+          <option value="Sim">✅ Troca de nome</option>
+        </select>
+      </div>
+
+      <div className="flex w-full gap-4">
+        <input placeholder="Nome antigo" required {...register('nomeAntigo')} />
+
+        <input placeholder="Nome novo" required {...register('nomeNovo')} />
+      </div>
+    </form>
   )
 }

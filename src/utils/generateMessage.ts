@@ -1,6 +1,6 @@
-import { Screening, TrocaDeSenha } from '@/@types/screening'
+import { ConfigRoteador, Triagem, TrocaDeSenha } from '@/@types/screening'
 
-export const generateScreening = (data: Screening) => {
+export const generateScreening = (data: Triagem) => {
   let screening = ''
 
   screening += '-> Gerenciador: ' + data.gerenciador + '\n'
@@ -82,9 +82,26 @@ export const generateScreening = (data: Screening) => {
 }
 
 export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
-  let trocaDeSenha = ''
+  let mensagem = ''
 
-  trocaDeSenha += data.senhaAntiga
+  mensagem +=
+    '- Cliente entrou em contato via ' +
+    data.canal +
+    ' solicitando troca de senha.\n'
 
-  return trocaDeSenha
+  mensagem += '- Dados confirmados\n\n'
+  mensagem += '- Senha antiga: ' + data.senhaAntiga + '\n'
+  mensagem += '- Senha nova: ' + data.senhaNova + '\n\n'
+  mensagem += '- Protocolo enviado.'
+  mensagem += '- Atendimento finalizado.'
+
+  return mensagem
+}
+
+export const generateConfigRoteador = (data: ConfigRoteador) => {
+  let mensagem = ''
+
+  mensagem += 1
+
+  return mensagem
 }

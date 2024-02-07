@@ -1,5 +1,6 @@
 import { ConfigRoteador } from '@/@types/screening'
 import { copyToClipboard } from '@/utils/copyToClipboard'
+import { generateConfigRoteador } from '@/utils/generateMessage'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -32,13 +33,9 @@ export default function ConfigRoteador() {
       autoComplete="off"
     >
       <div className="flex w-full gap-4">
-        <input
-          placeholder="Senha antiga"
-          required
-          {...register('senhaAntiga')}
-        />
+        <input placeholder="Senha antiga" required {...register('senha5g')} />
 
-        <input placeholder="Senha nova" required {...register('senhaNova')} />
+        <input placeholder="Senha nova" required {...register('senha5g')} />
       </div>
     </form>
   )

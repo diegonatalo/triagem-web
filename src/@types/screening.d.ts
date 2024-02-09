@@ -25,9 +25,13 @@ export type Triagem = {
   marcaModeloPontoAdicional?: string
   quedas: string
   defeito: string
+  quedaMassiva: string
+  clientesAfetados: string
 }
 
 export type TrocaDeSenha = {
+  nome: string
+  telefone: string
   canal: string
   ponto: string
   senhaAntiga: string

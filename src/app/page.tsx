@@ -35,6 +35,7 @@ export default function Home() {
   const pppoe = watch('situacaoPppoe') || 'Ativo'
   const acessoRemoto = watch('acessoRemoto') || '+ Acesso Remoto'
   const pontoAdicional = watch('pontoAdicional') || 'Não'
+  const quedaMassiva = watch('quedaMassiva') || 'Não'
 
   return (
     <form
@@ -234,6 +235,21 @@ export default function Home() {
           <option value="Oscilação"></option>
         </datalist>
       </div>
+
+      <div className="flex w-full gap-3">
+        <select required {...register('quedaMassiva')}>
+          <option value="Não">✅ Queda massiva</option>
+          <option value="Sim">❌ Queda massiva</option>
+        </select>
+      </div>
+
+      {quedaMassiva === 'Sim' && (
+        <textarea
+          placeholder="Clientes afetados"
+          required
+          {...register('clientesAfetados')}
+        ></textarea>
+      )}
 
       <div className="flex w-full">
         <Button />

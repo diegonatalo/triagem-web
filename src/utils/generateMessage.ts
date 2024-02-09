@@ -3,21 +3,21 @@ import { ConfigRoteador, Triagem, TrocaDeSenha } from '@/@types/screening'
 export const generateScreening = (data: Triagem) => {
   let screening = ''
 
-  screening += '-> Gerenciador: ' + data.gerenciador + '\n'
-  screening += '-> OLT: ' + data.olt + '\n'
+  screening += '> Gerenciador: ' + data.gerenciador + '\n'
+  screening += '> OLT: ' + data.olt + '\n'
   screening +=
-    '-> ' + data.onu + ' - ' + data.modeloOnu + ': ' + data.situacaoOnu + '\n'
+    '> ' + data.onu + ' - ' + data.modeloOnu + ': ' + data.situacaoOnu + '\n'
 
   if (data.coletivo === 'Sim') {
     screening +=
-      '-> Coletivo: ' + data.coletivo + ' / ' + data.nomeColetivo + '\n'
+      '> Coletivo: ' + data.coletivo + ' / ' + data.nomeColetivo + '\n'
   } else {
-    screening += '-> Coletivo: ' + data.coletivo + '\n'
+    screening += '> Coletivo: ' + data.coletivo + '\n'
   }
 
   if (data.situacaoOnu === 'Ativa') {
     screening +=
-      '-> Alarm History: ' +
+      '> Alarm History: ' +
       data.alarme +
       ' | ' +
       data.alarmeDate +
@@ -25,19 +25,19 @@ export const generateScreening = (data: Triagem) => {
       data.alarmeHour +
       '\n'
   } else {
-    screening += '-> Alarme constatado: ' + data.alarme + '\n'
+    screening += '> Alarme constatado: ' + data.alarme + '\n'
   }
 
   if (data.gerenciador === 'U2000') {
-    screening += '-> LineQuality: ' + data.lineQuality + '\n'
+    screening += '> LineQuality: ' + data.lineQuality + '\n'
   }
 
   screening +=
-    '-> Slot: ' + data.slot + '  PON: ' + data.pon + '  Id: ' + data.id + '\n'
+    '> Slot: ' + data.slot + '  PON: ' + data.pon + '  Id: ' + data.id + '\n'
 
   if (data.situacaoOnu === 'Ativa') {
     screening +=
-      '-> Sinal de envio: -' +
+      '> Sinal de envio: -' +
       data.envio +
       'dBm  Retorno: -' +
       data.retorno +
@@ -45,12 +45,12 @@ export const generateScreening = (data: Triagem) => {
       data.tx +
       'dBm' +
       '\n'
-    screening += '-> Cabo: ' + data.cabo + '\n'
+    screening += '> Cabo: ' + data.cabo + '\n'
   }
 
   if (data.situacaoPppoe === 'Ativo') {
     screening +=
-      '-> PPPoE: ' +
+      '> PPPoE: ' +
       data.situacaoPppoe +
       ' ' +
       data.acessoRemoto +
@@ -58,12 +58,12 @@ export const generateScreening = (data: Triagem) => {
       data.marcaModelo +
       '\n'
   } else {
-    screening += '-> PPPoE: ' + data.situacaoPppoe + '\n'
+    screening += '> PPPoE: ' + data.situacaoPppoe + '\n'
   }
 
   if (data.pontoAdicional === 'Sim') {
     screening +=
-      '-> Segundo ponto: ' +
+      '> Segundo ponto: ' +
       data.pontoAdicional +
       ' ' +
       data.acessoRemoto2 +
@@ -75,14 +75,23 @@ export const generateScreening = (data: Triagem) => {
   }
 
   screening +=
-    '-> Extrato de conexão: ' + data.quedas + ' Quedas constatadas' + '\n\n'
+    '> Extrato de conexão: ' + data.quedas + ' Quedas constatadas' + '\n\n'
   screening += 'Defeito reclamado: ' + data.defeito
+
+  if (data.quedaMassiva === 'Sim') {
+    screening += 'Outros clientes afetados:\n'
+
+    screening += data.clientesAfetados
+  }
 
   return screening
 }
 
 export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
   let mensagem = ''
+
+  mensagem += 'Nome: ' + data.nome + '\n'
+  mensagem += 'Telefone: ' + data.telefone + '\n'
 
   mensagem +=
     '- Cliente entrou em contato via ' +

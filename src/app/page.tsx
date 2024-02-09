@@ -238,8 +238,8 @@ export default function Home() {
 
       <div className="flex w-full gap-3">
         <select required {...register('quedaMassiva')}>
-          <option value="Não">✅ Queda massiva</option>
-          <option value="Sim">❌ Queda massiva</option>
+          <option value="Não">❌ Queda massiva</option>
+          <option value="Sim">✅ Queda massiva</option>
         </select>
       </div>
 

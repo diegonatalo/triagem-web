@@ -79,7 +79,7 @@ export const generateScreening = (data: Triagem) => {
   screening += 'Defeito reclamado: ' + data.defeito
 
   if (data.quedaMassiva === 'Sim') {
-    screening += 'Outros clientes afetados:\n'
+    screening += 'Verificado demais clientes inativos no mesmo horário:\n'
 
     screening += data.clientesAfetados
   }

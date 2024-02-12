@@ -98,7 +98,13 @@ export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
   let mensagem = ''
 
   mensagem += 'Nome: ' + data.nome + '\n'
-  mensagem += 'Telefone: ' + data.telefone + '\n\n'
+  mensagem += 'Telefone: ' + data.telefone
+
+  if (data.canal === 'Smart') {
+    mensagem += ' - Whatsapp' + '\n\n'
+  } else {
+    mensagem += '\n\n'
+  }
 
   mensagem +=
     '- Cliente entrou em contato via ' +

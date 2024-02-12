@@ -48,7 +48,7 @@ export default function TrocaDeSenha() {
       <div className="flex w-full gap-4">
         <select required {...register('canal')}>
           <option value="ligação">Ligação</option>
-          <option value="smart">Smart</option>
+          <option value="Smart">Smart</option>
         </select>
 
         <select required {...register('ponto')}>

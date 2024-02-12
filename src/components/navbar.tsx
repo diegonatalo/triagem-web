@@ -1,4 +1,5 @@
 import {
+  Barricade,
   Faders,
   LockSimple,
   MagnifyingGlass,
@@ -40,6 +41,14 @@ export const Navbar = () => {
         >
           <PlugsConnected size={24} weight="bold" />
           Rompimento
+        </Link>
+
+        <Link
+          className="flex items-center gap-3 rounded-lg bg-gray-800/50 p-4 text-gray-300"
+          href="/manutencao"
+        >
+          <Barricade size={24} weight="bold" />
+          Manutenção
         </Link>
 
         <Link

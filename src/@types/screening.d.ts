@@ -39,7 +39,6 @@ export type TrocaDeSenha = {
   trocaDeNome: string
   nomeAntigo?: string
   nomeNovo?: string
-  pontoAdicional: string
   senhaAntigaPontoAdicional?: string
   senhaNovaPontoAdicional?: string
   trocaDeNomePontoAdicional?: string

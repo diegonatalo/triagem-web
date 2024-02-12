@@ -106,8 +106,32 @@ export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
     ' solicitando troca de senha.\n'
 
   mensagem += '- Dados confirmados\n\n'
+
+  if (data.ponto === '1° e 2° ponto') {
+    mensagem += '1° Ponto:'
+  }
+
+  if (data.trocaDeNome === 'Sim') {
+    mensagem += '- Nome antigo: ' + data.nomeAntigo + '\n'
+    mensagem += '- Nome novo: ' + data.nomeNovo + '\n'
+  }
+
   mensagem += '- Senha antiga: ' + data.senhaAntiga + '\n'
   mensagem += '- Senha nova: ' + data.senhaNova + '\n\n'
+
+  if (data.ponto === '1° e 2º ponto') {
+    mensagem += '2° Ponto:\n'
+
+    if (data.trocaDeNomePontoAdicional === 'Sim') {
+      mensagem += '- Nome antigo: ' + data.nomeAntigoPontoAdicional + '\n'
+      mensagem += '- Nome novo: ' + data.nomeNovoPontoAdicional + '\n'
+    }
+
+    mensagem += '- Senha antiga: ' + data.senhaAntigaPontoAdicional + '\n'
+    mensagem += '- Senha nova: ' + data.senhaNovaPontoAdicional + '\n\n'
+  }
+
+  mensagem += '- Cliente confirmou conexão.'
   mensagem += '- Protocolo enviado.'
   mensagem += '- Atendimento finalizado.'
 

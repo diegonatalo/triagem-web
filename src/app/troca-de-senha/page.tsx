@@ -29,8 +29,9 @@ export default function TrocaDeSenha() {
     reset()
   })
 
-  const trocarNome = watch('trocaDeNome') || 'Não'
   const ponto = watch('trocaDeNome') || '1° ponto'
+  const trocarNome = watch('trocaDeNome') || 'Não'
+  const trocarNomePontoAdicional = watch('trocaDeNomePontoAdicional') || 'Não'
 
   return (
     <form
@@ -84,6 +85,47 @@ export default function TrocaDeSenha() {
 
           <input placeholder="Nome novo" required {...register('nomeNovo')} />
         </div>
+      )}
+
+      {ponto === '1° e 2° ponto' && (
+        <>
+          <div className="flex w-full gap-4">
+            <input
+              placeholder="Senha antiga"
+              required
+              {...register('senhaAntigaPontoAdicional')}
+            />
+
+            <input
+              placeholder="Senha nova"
+              required
+              {...register('senhaNovaPontoAdicional')}
+            />
+          </div>
+
+          <div className="flex w-full gap-4">
+            <select required {...register('trocaDeNomePontoAdicional')}>
+              <option value="Não">❌ Troca de nome</option>
+              <option value="Sim">✅ Troca de nome</option>
+            </select>
+          </div>
+
+          {trocarNomePontoAdicional === 'Sim' && (
+            <div className="flex w-full gap-4">
+              <input
+                placeholder="Nome antigo"
+                required
+                {...register('nomeAntigoPontoAdicional')}
+              />
+
+              <input
+                placeholder="Nome novo"
+                required
+                {...register('nomeNovoPontoAdicional')}
+              />
+            </div>
+          )}
+        </>
       )}
 
       <Button />

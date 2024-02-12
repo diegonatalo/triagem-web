@@ -108,7 +108,7 @@ export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
   mensagem += '- Dados confirmados\n\n'
 
   if (data.ponto === '1° e 2° ponto') {
-    mensagem += '1° Ponto:'
+    mensagem += '1° Ponto:\n'
   }
 
   if (data.trocaDeNome === 'Sim') {
@@ -119,7 +119,7 @@ export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
   mensagem += '- Senha antiga: ' + data.senhaAntiga + '\n'
   mensagem += '- Senha nova: ' + data.senhaNova + '\n\n'
 
-  if (data.ponto === '1° e 2º ponto') {
+  if (data.ponto === '1° e 2° ponto') {
     mensagem += '2° Ponto:\n'
 
     if (data.trocaDeNomePontoAdicional === 'Sim') {

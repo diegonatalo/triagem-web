@@ -29,7 +29,7 @@ export default function TrocaDeSenha() {
     reset()
   })
 
-  const ponto = watch('trocaDeNome') || '1° ponto'
+  const ponto = watch('ponto') || '1° ponto'
   const trocarNome = watch('trocaDeNome') || 'Não'
   const trocarNomePontoAdicional = watch('trocaDeNomePontoAdicional') || 'Não'
 
@@ -54,9 +54,13 @@ export default function TrocaDeSenha() {
         <select required {...register('ponto')}>
           <option value="1° ponto">1° ponto</option>
           <option value="2° ponto">2° ponto</option>
-          <option value="1º e 2º ponto">1º e 2° ponto</option>
+          <option value="1° e 2° ponto">1º e 2° ponto</option>
         </select>
       </div>
+
+      {ponto === '1° e 2° ponto' && (
+        <div className="flex w-full">1° Ponto:</div>
+      )}
 
       <div className="flex w-full gap-4">
         <input
@@ -89,6 +93,7 @@ export default function TrocaDeSenha() {
 
       {ponto === '1° e 2° ponto' && (
         <>
+          <div className="flex w-full">2° Ponto:</div>
           <div className="flex w-full gap-4">
             <input
               placeholder="Senha antiga"

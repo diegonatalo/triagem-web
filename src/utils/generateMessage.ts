@@ -98,7 +98,7 @@ export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
   let mensagem = ''
 
   mensagem += 'Nome: ' + data.nome + '\n'
-  mensagem += 'Telefone: ' + data.telefone + '\n'
+  mensagem += 'Telefone: ' + data.telefone + '\n\n'
 
   mensagem +=
     '- Cliente entrou em contato via ' +
@@ -131,8 +131,8 @@ export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
     mensagem += '- Senha nova: ' + data.senhaNovaPontoAdicional + '\n\n'
   }
 
-  mensagem += '- Cliente confirmou conexão.'
-  mensagem += '- Protocolo enviado.'
+  mensagem += '- Cliente confirmou conexão.\n'
+  mensagem += '- Protocolo enviado.\n'
   mensagem += '- Atendimento finalizado.'
 
   return mensagem

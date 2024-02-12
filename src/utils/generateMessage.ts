@@ -78,12 +78,12 @@ export const generateScreening = (data: Triagem) => {
       data.marcaModeloPontoAdicional +
       '\n'
   } else {
-    screening += '-> Segundo ponto: ' + data.pontoAdicional + '\n'
+    screening += '> Segundo ponto: ' + data.pontoAdicional + '\n'
   }
 
   screening +=
     '> Extrato de conexão: ' + data.quedas + ' Quedas constatadas' + '\n\n'
-  screening += 'Defeito reclamado: ' + data.defeito
+  screening += 'Defeito reclamado: ' + data.defeito + '\n\n'
 
   if (data.quedaMassiva === 'Sim') {
     screening += 'Verificado demais clientes inativos no mesmo horário:\n'

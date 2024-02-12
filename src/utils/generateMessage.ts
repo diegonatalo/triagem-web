@@ -25,7 +25,14 @@ export const generateScreening = (data: Triagem) => {
       data.alarmeHour +
       '\n'
   } else {
-    screening += '> Alarme constatado: ' + data.alarme + '\n'
+    screening +=
+      '> Alarme constatado: ' +
+      data.alarme +
+      ' | ' +
+      data.alarmeDate +
+      ' - ' +
+      data.alarmeHour +
+      '\n'
   }
 
   if (data.gerenciador === 'U2000') {

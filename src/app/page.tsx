@@ -120,13 +120,9 @@ export default function Home() {
           <option value="Sem Alarme">Sem Alarme</option>
         </select>
 
-        {status === 'Ativa' && (
-          <>
-            <input placeholder="Data" {...register('alarmeDate')} />
+        <input placeholder="Data" {...register('alarmeDate')} />
 
-            <input placeholder="Hora" {...register('alarmeHour')} />
-          </>
-        )}
+        <input placeholder="Hora" {...register('alarmeHour')} />
       </div>
 
       <div className="flex w-full gap-3">

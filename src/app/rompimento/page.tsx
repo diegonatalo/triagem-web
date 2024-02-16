@@ -1,3 +1,5 @@
+'use client'
+
 import { Rompimento } from '@/@types/screening'
 import { Button } from '@/components/button'
 import { copyToClipboard } from '@/utils/copyToClipboard'

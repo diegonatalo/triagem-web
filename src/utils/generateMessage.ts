@@ -1,4 +1,9 @@
-import { ConfigRoteador, Triagem, TrocaDeSenha } from '@/@types/screening'
+import {
+  ConfigRoteador,
+  Rompimento,
+  Triagem,
+  TrocaDeSenha
+} from '@/@types/screening'
 
 export const generateScreening = (data: Triagem) => {
   let screening = ''
@@ -150,4 +155,16 @@ export const generateConfigRoteador = (data: ConfigRoteador) => {
   mensagem += 1
 
   return mensagem
+}
+
+export const generateRompimento = (data: Rompimento) => {
+  let message =
+    '- Cliente afetado pelo rompimento\n- ONU alarmando Link Loss\n- Protocolo informado\n'
+
+  message += '- Gerenciador: ' + data.gerenciador + '\n'
+  message += '- Slot: ' + data.slot + '  '
+  message += '- PON: ' + data.pon + '  '
+  message += '- Id: ' + data.id
+
+  return message
 }

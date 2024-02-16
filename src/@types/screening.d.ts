@@ -63,3 +63,11 @@ export type ConfigRoteador = {
   ipBase: string
   portasLiberadas?: string
 }
+
+export type Rompimento = {
+  gerenciador: string
+  olt: string
+  slot: string
+  pon: string
+  id: string
+}

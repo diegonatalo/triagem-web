@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center gap-4 px-4 py-8">
+        <main className="mx-auto flex w-full max-w-[600px] flex-col justify-center gap-4 self-start px-4 py-8">
           {children}
 
           <Toaster position="bottom-center" />

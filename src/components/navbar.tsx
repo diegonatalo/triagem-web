@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 export const Navbar = () => {
   return (
-    <aside className="hidden h-full min-w-max max-w-[280px] flex-1 flex-col justify-between gap-4 bg-black px-4 py-8 lg:flex">
+    <aside className="hidden h-full min-w-max max-w-[280px] flex-1 flex-col justify-between gap-4 bg-black px-4 py-8 md:flex">
       <nav className="flex flex-col gap-4 font-bold">
         <Link
           className="flex items-center gap-3 rounded-lg bg-gray-800/50 p-4 text-gray-300"

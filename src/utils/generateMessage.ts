@@ -162,9 +162,10 @@ export const generateRompimento = (data: Rompimento) => {
     '- Cliente afetado pelo rompimento\n- ONU alarmando Link Loss\n- Protocolo informado\n'
 
   message += '- Gerenciador: ' + data.gerenciador + '\n'
-  message += '- Slot: ' + data.slot + '  '
-  message += '- PON: ' + data.pon + '  '
-  message += '- Id: ' + data.id
+  message += '- OLT: ' + data.olt + '\n'
+  message += '- Slot: ' + data.slot
+  message += '  /  PON: ' + data.pon
+  message += '  /  Id: ' + data.id
 
   return message
 }

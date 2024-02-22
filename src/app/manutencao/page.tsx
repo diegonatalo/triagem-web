@@ -1,6 +1,7 @@
 'use client'
 
 import { Manutencao } from '@/@types/screening'
+import { Button } from '@/components/button'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 import { generateManutencao } from '@/utils/generateMessage'
 import { useForm } from 'react-hook-form'
@@ -67,6 +68,8 @@ export default function Manutencao() {
 
         <input placeholder="PON" required {...register('pon')} />
       </div>
+
+      <Button />
     </form>
   )
 }

@@ -22,14 +22,14 @@ export const RadixAccordion = () => {
 
         <Accordion.Content className="overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
           <Link
-            className="flex items-center gap-3 bg-zinc-900/50 p-6 pl-10 text-gray-300 transition-colors hover:bg-zinc-900"
+            className="flex items-center gap-3 bg-gray-900/50 p-6 pl-12 text-gray-300 transition-colors hover:bg-gray-900"
             href="/smart"
           >
             <Chats size={24} weight="bold" />
             Smart
           </Link>
           <Link
-            className="flex items-center gap-3 bg-zinc-900/50 p-6 pl-10 text-gray-300 transition-colors hover:bg-zinc-900"
+            className="flex items-center gap-3 bg-gray-900/50 p-6 pl-12 text-gray-300 transition-colors hover:bg-gray-900"
             href="/scripts"
           >
             <ShieldCheck size={24} weight="bold" />

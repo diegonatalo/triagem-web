@@ -48,7 +48,7 @@ export const Navbar = () => {
         <RadixAccordion />
       </nav>
 
-      <span className="text-center text-sm text-gray-500">
+      <span className="text-center text-sm text-gray-500/50">
         Made with 💙
         <br />
         by{' '}

@@ -1,5 +1,6 @@
 import {
   ConfigRoteador,
+  Manutencao,
   Rompimento,
   Triagem,
   TrocaDeSenha
@@ -166,6 +167,24 @@ export const generateRompimento = (data: Rompimento) => {
   message += '- Slot: ' + data.slot
   message += '  /  PON: ' + data.pon
   message += '  /  Id: ' + data.id
+
+  return message
+}
+
+export const generateManutencao = (data: Manutencao) => {
+  let message = '- Cliente ciente da manutenção em sua região.\n'
+
+  message += '- Gerenciador: ' + data.gerenciador + '\n'
+  message += '- OLT: ' + data.olt + '\n'
+  message += '- Slot: ' + data.slot
+  message += '  /  PON: ' + data.pon + '\n'
+  message += '- Ciente de seu atendimento em monitoramento.\n'
+
+  if (data.canal === 'Smart') {
+    message += '- Protocolo informado.'
+  } else {
+    message += '- Protocolo enviado por sms.'
+  }
 
   return message
 }

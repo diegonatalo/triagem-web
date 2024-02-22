@@ -71,3 +71,11 @@ export type Rompimento = {
   pon: string
   id: string
 }
+
+export type Manutencao = {
+  canal: string
+  gerenciador: string
+  olt: string
+  slot: string
+  pon: string
+}

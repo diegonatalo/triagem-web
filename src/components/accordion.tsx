@@ -20,7 +20,7 @@ export const RadixAccordion = () => {
           </div>
         </Accordion.Trigger>
 
-        <Accordion.Content className="data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden">
+        <Accordion.Content className="overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
           <Link
             className="flex items-center gap-3 bg-zinc-900/50 p-6 pl-10 text-gray-300 transition-colors hover:bg-zinc-900"
             href="/smart"

@@ -117,6 +117,7 @@ export default function Home() {
           <option value="Dying Gasp (COD 2)">Dying Gasp</option>
           <option value="SUF (COD 3)">SUF</option>
           <option value="DownBip BipUp (COD 4)">DownBip BipUp</option>
+          <option value="Board Abort (COD 5)">Board Abort</option>
           <option value="Sem Alarme">Sem Alarme</option>
         </select>
 

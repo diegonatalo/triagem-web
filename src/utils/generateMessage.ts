@@ -22,23 +22,15 @@ export const generateScreening = (data: Triagem) => {
   }
 
   if (data.situacaoOnu === 'Ativa') {
-    screening +=
-      '> Alarm History: ' +
-      data.alarme +
-      ' | ' +
-      data.alarmeDate +
-      ' - ' +
-      data.alarmeHour +
-      '\n'
+    screening += '> Alarm History: ' + data.alarme
   } else {
-    screening +=
-      '> Alarme constatado: ' +
-      data.alarme +
-      ' | ' +
-      data.alarmeDate +
-      ' - ' +
-      data.alarmeHour +
-      '\n'
+    screening += '> Alarme constatado: ' + data.alarme
+  }
+
+  if (data.alarmeDate) {
+    screening += ' | ' + data.alarmeDate + ' - ' + data.alarmeHour + '\n'
+  } else {
+    screening += '\n'
   }
 
   if (data.gerenciador === 'U2000') {

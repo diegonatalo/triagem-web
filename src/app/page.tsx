@@ -32,6 +32,7 @@ export default function Home() {
   const gerenciador = watch('gerenciador') || 'U2000'
   const status = watch('situacaoOnu') || 'Ativa'
   const coletivo = watch('coletivo') || 'Não'
+  const alarme = watch('alarme')
   const pppoe = watch('situacaoPppoe') || 'Ativo'
   const acessoRemoto = watch('acessoRemoto') || '+ Acesso Remoto'
   const pontoAdicional = watch('pontoAdicional') || 'Não'
@@ -122,9 +123,17 @@ export default function Home() {
           <option value="Sem Alarme">Sem Alarme</option>
         </select>
 
-        <input placeholder="Data" {...register('alarmeDate')} />
+        <input
+          placeholder="Data"
+          {...register('alarmeDate')}
+          required={alarme !== 'Sem Alarme'}
+        />
 
-        <input placeholder="Hora" {...register('alarmeHour')} />
+        <input
+          placeholder="Hora"
+          {...register('alarmeHour')}
+          required={alarme !== 'Sem Alarme'}
+        />
       </div>
 
       <div className="flex w-full gap-3">

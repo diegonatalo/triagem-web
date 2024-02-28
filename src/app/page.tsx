@@ -4,6 +4,7 @@ import { Triagem } from '@/@types/screening'
 import { Button } from '@/components/button'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 import { generateScreening } from '@/utils/generateMessage'
+import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -37,6 +38,35 @@ export default function Home() {
   const acessoRemoto = watch('acessoRemoto') || '+ Acesso Remoto'
   const pontoAdicional = watch('pontoAdicional') || 'Não'
   const quedaMassiva = watch('quedaMassiva') || 'Não'
+
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
+
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value.replace(/\D/g, '')
+    if (inputValue.length <= 2) {
+      setDate(inputValue)
+    } else if (inputValue.length <= 4) {
+      setDate(inputValue.slice(0, 2) + '/' + inputValue.slice(2))
+    } else {
+      setDate(
+        inputValue.slice(0, 2) +
+          '/' +
+          inputValue.slice(2, 4) +
+          '/' +
+          inputValue.slice(4, 6)
+      )
+    }
+  }
+
+  const handleTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputValue: string = e.target.value.replace(/\D/g, '')
+    if (inputValue.length <= 2) {
+      setTime(inputValue)
+    } else {
+      setTime(inputValue.slice(0, 2) + ':' + inputValue.slice(2, 4))
+    }
+  }
 
   return (
     <form
@@ -127,12 +157,16 @@ export default function Home() {
           placeholder="Data"
           {...register('alarmeDate')}
           required={alarme !== 'Sem Alarme'}
+          value={date}
+          onChange={handleDateChange}
         />
 
         <input
           placeholder="Hora"
           {...register('alarmeHour')}
           required={alarme !== 'Sem Alarme'}
+          value={time}
+          onChange={handleTimeChange}
         />
       </div>
 

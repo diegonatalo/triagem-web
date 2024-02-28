@@ -225,11 +225,12 @@ export default function Home() {
 
         <datalist id="modelsList">
           <option value="HUAWEI / AX2"></option>
-          <option value="HUAWEI / 5200"></option>
+          <option value="HUAWEI / WS5200"></option>
           <option value="HUAWEI / EG8145V5-V2"></option>
           <option value="TP-LINK / C5"></option>
           <option value="TP-LINK / G5"></option>
           <option value="TP-LINK / C20"></option>
+          <option value="TP-LINK / WR840N"></option>
         </datalist>
       </div>
 

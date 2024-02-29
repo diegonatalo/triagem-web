@@ -1,10 +1,10 @@
 import {
+  AndroidLogo,
   Barricade,
   Faders,
   LockSimple,
-  MagnifyingGlass,
-  MapTrifold,
-  PlugsConnected
+  PlugsConnected,
+  Stethoscope
 } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 import { RadixAccordion } from './accordion'
@@ -17,12 +17,12 @@ export const Navbar = () => {
     <aside className="hidden min-h-full w-full max-w-[260px] flex-col justify-between gap-4 bg-black py-6 md:flex">
       <nav className="flex flex-col font-bold">
         <Link className={defaultClass} href="/guide">
-          <MapTrifold size={24} weight="bold" />
-          Guia
+          <AndroidLogo size={24} weight="bold" />
+          Copilot
         </Link>
 
         <Link className={defaultClass} href="/">
-          <MagnifyingGlass size={24} weight="bold" />
+          <Stethoscope size={24} weight="bold" />
           Triagem
         </Link>
 

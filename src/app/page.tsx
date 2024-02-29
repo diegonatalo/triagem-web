@@ -28,6 +28,8 @@ export default function Home() {
     })
 
     reset()
+    setDate('')
+    setTime('')
   })
 
   const gerenciador = watch('gerenciador') || 'U2000'

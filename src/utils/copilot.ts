@@ -95,7 +95,7 @@ export const copilot: Copilot = {
   },
   semconexao4a: {
     botMessage:
-      'Existe alguma luz acesa na ONU?\n\nVerificar principalmente se é a LOSS',
+      'Existe alguma luz acesa na ONU?\n\n(Verificar principalmente se é a LOSS)',
     buttons: [
       {
         buttonTitle: 'Sim',

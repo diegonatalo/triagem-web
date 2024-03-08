@@ -95,21 +95,8 @@ export const generateScreening = (data: Triagem) => {
 export const generateTrocaDeSenha = (data: TrocaDeSenha) => {
   let mensagem = ''
 
-  mensagem += 'Nome: ' + data.nome + '\n'
-  mensagem += 'Telefone: ' + data.telefone
-
-  if (data.canal === 'Smart') {
-    mensagem += ' - Whatsapp' + '\n\n'
-  } else {
-    mensagem += '\n\n'
-  }
-
   mensagem +=
-    '- Cliente entrou em contato via ' +
-    data.canal +
-    ' solicitando troca de senha.\n'
-
-  mensagem += '- Dados confirmados\n\n'
+    '- Cliente entrou em contato solicitando troca de senha.\n- Dados confirmados\n\n'
 
   if (data.ponto === '1° e 2° ponto') {
     mensagem += '1° Ponto:\n'

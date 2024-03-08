@@ -40,17 +40,6 @@ export default function TrocaDeSenha() {
       autoComplete="off"
     >
       <div className="flex w-full gap-4">
-        <input placeholder="Nome" required {...register('nome')} />
-
-        <input placeholder="Telefone" required {...register('telefone')} />
-      </div>
-
-      <div className="flex w-full gap-4">
-        <select required {...register('canal')}>
-          <option value="ligação">Ligação</option>
-          <option value="Smart">Smart</option>
-        </select>
-
         <select required {...register('ponto')}>
           <option value="1° ponto">1° ponto</option>
           <option value="2° ponto">2° ponto</option>

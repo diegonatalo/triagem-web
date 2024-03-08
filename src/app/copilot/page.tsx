@@ -6,13 +6,13 @@ import { useState } from 'react'
 
 export default function Guide() {
   const defaultClass =
-    'rounded-2xl border-2 border-sky-500/50 p-4 text-sky-500 hover:bg-sky-900/50 flex-1 transition-colors'
+    'rounded-2xl border-2 border-sky-500/50 p-4 text-sky-500 hover:bg-sky-900/50 flex-1 transition-colors uppercase font-bold'
 
   const [state, setState] = useState('nada')
 
   return (
     <div className="my-auto flex w-full flex-col justify-between gap-10">
-      <h1 className="flex justify-center gap-2 text-lg font-bold text-yellow-500/70">
+      <h1 className="flex items-center justify-center gap-2 text-lg font-bold text-yellow-500/70">
         <WarningDiamond size={24} weight="bold" />
         Em desenvolvimento
       </h1>

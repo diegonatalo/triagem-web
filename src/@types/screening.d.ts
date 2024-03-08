@@ -30,9 +30,6 @@ export type Triagem = {
 }
 
 export type TrocaDeSenha = {
-  nome: string
-  telefone: string
-  canal: string
   ponto: string
   senhaAntiga: string
   senhaNova: string

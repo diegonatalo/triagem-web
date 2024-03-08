@@ -19,7 +19,7 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar {
-  @apply bg-gray-800 w-[5px]
+  @apply w-[8px]
 }
 
 ::-webkit-scrollbar-track {
@@ -27,5 +27,5 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-500/50 rounded-[20px] bg-clip-content
+  @apply bg-gray-600 rounded-[20px] bg-clip-content
 }

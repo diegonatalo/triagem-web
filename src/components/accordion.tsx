@@ -28,16 +28,18 @@ export const RadixAccordion = ({ link, full }: RadixAccordionProps) => {
           </div>
         </Accordion.Trigger>
 
-        <Accordion.Content className="overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
-          {link.subItem!.map((item) => (
-            <NavLink
-              key={item.title}
-              link={item}
-              isSubItem={true}
-              full={full}
-            />
-          ))}
-        </Accordion.Content>
+        {full && (
+          <Accordion.Content className="overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
+            {link.subItem!.map((item) => (
+              <NavLink
+                key={item.title}
+                link={item}
+                isSubItem={true}
+                full={full}
+              />
+            ))}
+          </Accordion.Content>
+        )}
       </Accordion.Item>
     </Accordion.Root>
   )

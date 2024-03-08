@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   return (
     <aside
-      className="fixed z-10 flex min-h-full w-max max-w-[260px] flex-col justify-between gap-4 bg-black py-6 transition-all"
+      className="absolute z-10 flex h-screen w-max max-w-[260px] flex-col justify-between gap-4 overflow-y-auto bg-black py-6 transition-all"
       onMouseEnter={() => setWidth(true)}
       onMouseLeave={() => setWidth(false)}
     >

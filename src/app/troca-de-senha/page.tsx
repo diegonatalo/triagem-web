@@ -35,7 +35,7 @@ export default function TrocaDeSenha() {
 
   return (
     <form
-      className="flex w-full flex-col gap-3"
+      className="mx-auto flex w-full max-w-[600px] flex-col gap-3"
       onSubmit={onSubmit}
       autoComplete="off"
     >

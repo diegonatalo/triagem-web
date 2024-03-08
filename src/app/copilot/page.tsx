@@ -11,7 +11,7 @@ export default function Guide() {
   const [state, setState] = useState('nada')
 
   return (
-    <div className="my-auto flex w-full flex-col justify-between gap-10">
+    <div className="mx-auto flex w-full max-w-[600px] flex-col justify-between gap-10">
       <h1 className="flex items-center justify-center gap-2 text-lg font-bold text-yellow-500/70">
         <WarningDiamond size={24} weight="bold" />
         Em desenvolvimento

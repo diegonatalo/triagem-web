@@ -58,7 +58,7 @@ const atendimento = [
 
 export default function Scripts() {
   return (
-    <div className="flex w-full flex-col gap-3">
+    <div className="mx-auto flex w-full max-w-[600px] flex-col gap-3">
       {atendimento.map((item) => (
         <FinalizationButton
           key={item.title}

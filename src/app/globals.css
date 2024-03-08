@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @apply bg-gray-950 text-gray-300 flex min-h-full
+  @apply bg-gray-950 text-gray-300 flex min-h-full overflow-hidden
 }
 
 input, textarea, select {
@@ -19,7 +19,7 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar {
-  @apply bg-gray-800 w-[10px]
+  @apply bg-gray-800 w-[5px]
 }
 
 ::-webkit-scrollbar-track {
@@ -27,5 +27,5 @@ input, textarea, select {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-sky-500/50 rounded-[20px] bg-clip-content
+  @apply bg-gray-500/50 rounded-[20px] bg-clip-content
 }

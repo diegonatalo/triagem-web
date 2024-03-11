@@ -3,8 +3,8 @@ export type Triagem = {
   olt: string
   onu: string
   modeloOnu: string
-  situacaoOnu: string
-  coletivo: string
+  situacaoOnu: boolean
+  coletivo: boolean
   nomeColetivo: string
   alarme: string
   alarmeDate?: string
@@ -17,15 +17,15 @@ export type Triagem = {
   retorno?: string
   tx?: string
   cabo?: string
-  situacaoPppoe: string
-  acessoRemoto: string
+  situacaoPppoe: boolean
+  acessoRemoto: boolean
   marcaModelo?: string
-  pontoAdicional: string
-  acessoRemoto2?: string
+  pontoAdicional: boolean
+  acessoRemoto2?: boolean
   marcaModeloPontoAdicional?: string
   quedas: string
   defeito: string
-  quedaMassiva: string
+  quedaMassiva: boolean
   clientesAfetados: string
 }
 

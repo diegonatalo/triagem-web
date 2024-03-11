@@ -2,14 +2,15 @@
 
 import { Triagem } from '@/@types/screening'
 import { Button } from '@/components/button'
+import { RadixToggle } from '@/components/toggle'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 import { generateScreening } from '@/utils/generateMessage'
 import { ChangeEvent, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 export default function Home() {
-  const { register, handleSubmit, reset, watch } = useForm<Triagem>()
+  const { register, handleSubmit, reset, watch, control } = useForm<Triagem>()
 
   const onSubmit = handleSubmit((data) => {
     const triagemFormatada = generateScreening(data)
@@ -30,16 +31,16 @@ export default function Home() {
     reset()
     setDate('')
     setTime('')
+    setTimeout(() => location.reload(), 2000)
   })
 
-  const gerenciador = watch('gerenciador') || 'U2000'
-  const status = watch('situacaoOnu') || 'Ativa'
-  const coletivo = watch('coletivo') || 'Não'
+  const gerenciador = watch('gerenciador', 'U2000')
+  const status = watch('situacaoOnu', true)
+  const coletivo = watch('coletivo', false)
   const alarme = watch('alarme')
-  const pppoe = watch('situacaoPppoe') || 'Ativo'
-  const acessoRemoto = watch('acessoRemoto') || '+ Acesso Remoto'
-  const pontoAdicional = watch('pontoAdicional') || 'Não'
-  const quedaMassiva = watch('quedaMassiva') || 'Não'
+  const pppoe = watch('situacaoPppoe', true)
+  const pontoAdicional = watch('pontoAdicional', false)
+  const quedaMassiva = watch('quedaMassiva', false)
 
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -76,7 +77,7 @@ export default function Home() {
       onSubmit={onSubmit}
       autoComplete="off"
     >
-      <div className="flex w-full gap-4">
+      <div className="flex w-full gap-3">
         <select required {...register('gerenciador')}>
           <option selected value="U2000">
             U2000
@@ -110,22 +111,40 @@ export default function Home() {
           <option value="Fiberhome">Fiberhome</option>
         </select>
 
-        <select required {...register('situacaoOnu')}>
-          <option selected value="Ativa">
-            ✅ Ativa
-          </option>
-          <option value="Inativa">❌ Inativa</option>
-        </select>
+        <Controller
+          control={control}
+          name="situacaoOnu"
+          defaultValue={true}
+          render={({ field }) => {
+            return (
+              <RadixToggle
+                title="Status"
+                onPressChange={field.onChange}
+                {...field}
+              />
+            )
+          }}
+        ></Controller>
       </div>
 
       <div className="flex w-full gap-3">
-        <select required {...register('coletivo')}>
-          <option value="">Coletivo</option>
-          <option value="Não">❌ Coletivo</option>
-          <option value="Sim">✅ Coletivo</option>
-        </select>
+        <Controller
+          control={control}
+          name="coletivo"
+          defaultValue={false}
+          render={({ field }) => {
+            return (
+              <RadixToggle
+                title="Coletivo"
+                defaultPressed={false}
+                onPressChange={field.onChange}
+                {...field}
+              />
+            )
+          }}
+        ></Controller>
 
-        {coletivo === 'Sim' && (
+        {coletivo && (
           <input
             placeholder="Nome do coletivo"
             required
@@ -180,7 +199,7 @@ export default function Home() {
         <input placeholder="ID" required {...register('id')} />
       </div>
 
-      {status === 'Ativa' && (
+      {status && (
         <div className="flex w-full gap-3">
           <input placeholder="Envio" required {...register('envio')} />
 
@@ -204,25 +223,45 @@ export default function Home() {
       )}
 
       <div className="flex w-full gap-3">
-        <select required {...register('situacaoPppoe')}>
-          <option value="Ativo">✅ PPPoE</option>
-          <option value="Inativo">❌ PPPoE</option>
-        </select>
+        <Controller
+          control={control}
+          name="situacaoPppoe"
+          defaultValue={true}
+          render={({ field }) => {
+            return (
+              <RadixToggle
+                title="PPPoE"
+                onPressChange={field.onChange}
+                {...field}
+              />
+            )
+          }}
+        ></Controller>
 
-        {pppoe === 'Ativo' && (
-          <select required {...register('acessoRemoto')}>
-            <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
-            <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
-          </select>
-        )}
+        {pppoe && (
+          <>
+            <Controller
+              control={control}
+              name="acessoRemoto"
+              defaultValue={true}
+              render={({ field }) => {
+                return (
+                  <RadixToggle
+                    title="Acesso remoto"
+                    onPressChange={field.onChange}
+                    {...field}
+                  />
+                )
+              }}
+            ></Controller>
 
-        {pppoe === 'Ativo' && acessoRemoto === '+ Acesso Remoto' && (
-          <input
-            list="modelsList"
-            placeholder="Marca/Modelo"
-            required
-            {...register('marcaModelo')}
-          />
+            <input
+              list="modelsList"
+              placeholder="Marca/Modelo"
+              required
+              {...register('marcaModelo')}
+            />
+          </>
         )}
 
         <datalist id="modelsList">
@@ -237,17 +276,38 @@ export default function Home() {
       </div>
 
       <div className="flex w-full gap-3">
-        <select required {...register('pontoAdicional')}>
-          <option value="Não">❌ Segundo Ponto</option>
-          <option value="Sim">✅ Segundo Ponto</option>
-        </select>
+        <Controller
+          control={control}
+          name="pontoAdicional"
+          defaultValue={false}
+          render={({ field }) => {
+            return (
+              <RadixToggle
+                title="Segundo ponto"
+                defaultPressed={false}
+                onPressChange={field.onChange}
+                {...field}
+              />
+            )
+          }}
+        ></Controller>
 
-        {pontoAdicional === 'Sim' && (
+        {pontoAdicional && (
           <>
-            <select required {...register('acessoRemoto2')}>
-              <option value="+ Acesso Remoto">✅ Acesso Remoto</option>
-              <option value="(Sem Acesso Remoto)">❌ Acesso Remoto</option>
-            </select>
+            <Controller
+              control={control}
+              name="acessoRemoto2"
+              defaultValue={true}
+              render={({ field }) => {
+                return (
+                  <RadixToggle
+                    title="Acesso remoto"
+                    onPressChange={field.onChange}
+                    {...field}
+                  />
+                )
+              }}
+            ></Controller>
 
             <input
               list="modelsList"
@@ -281,13 +341,24 @@ export default function Home() {
       </div>
 
       <div className="flex w-full gap-3">
-        <select required {...register('quedaMassiva')}>
-          <option value="Não">❌ Queda massiva</option>
-          <option value="Sim">✅ Queda massiva</option>
-        </select>
+        <Controller
+          control={control}
+          name="quedaMassiva"
+          defaultValue={false}
+          render={({ field }) => {
+            return (
+              <RadixToggle
+                title="Problema massivo"
+                defaultPressed={false}
+                onPressChange={field.onChange}
+                {...field}
+              />
+            )
+          }}
+        ></Controller>
       </div>
 
-      {quedaMassiva === 'Sim' && (
+      {quedaMassiva && (
         <textarea
           placeholder="Clientes afetados"
           required

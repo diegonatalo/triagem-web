@@ -21,7 +21,7 @@ export default function Guide() {
         {copilot[state].botMessage}
       </span>
 
-      <div className="flex justify-center gap-3">
+      <div className="flex flex-col justify-center gap-3 sm:flex-row">
         {copilot[state].buttons.map((button) => (
           <button
             key={button.buttonValue}

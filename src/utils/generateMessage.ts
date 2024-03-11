@@ -11,17 +11,21 @@ export const generateScreening = (data: Triagem) => {
 
   screening += '> Gerenciador: ' + data.gerenciador + '\n'
   screening += '> OLT: ' + data.olt + '\n'
-  screening +=
-    '> ' + data.onu + ' - ' + data.modeloOnu + ': ' + data.situacaoOnu + '\n'
+  screening += '> ' + data.onu + ' - ' + data.modeloOnu + ': '
 
-  if (data.coletivo === 'Sim') {
-    screening +=
-      '> Coletivo: ' + data.coletivo + ' / ' + data.nomeColetivo + '\n'
+  if (data.situacaoOnu) {
+    screening += 'Ativa\n'
   } else {
-    screening += '> Coletivo: ' + data.coletivo + '\n'
+    screening += 'Inativa\n'
   }
 
-  if (data.situacaoOnu === 'Ativa') {
+  if (data.coletivo) {
+    screening += '> Coletivo: Sim / ' + data.nomeColetivo + '\n'
+  } else {
+    screening += '> Coletivo: Não\n'
+  }
+
+  if (data.situacaoOnu) {
     screening += '> Alarm History: ' + data.alarme
   } else {
     screening += '> Alarme constatado: ' + data.alarme
@@ -40,7 +44,7 @@ export const generateScreening = (data: Triagem) => {
   screening +=
     '> Slot: ' + data.slot + '  PON: ' + data.pon + '  Id: ' + data.id + '\n'
 
-  if (data.situacaoOnu === 'Ativa') {
+  if (data.situacaoOnu) {
     screening +=
       '> Sinal de envio: -' +
       data.envio +
@@ -53,37 +57,39 @@ export const generateScreening = (data: Triagem) => {
     screening += '> Cabo: ' + data.cabo + '\n'
   }
 
-  if (data.situacaoPppoe === 'Ativo') {
-    screening +=
-      '> PPPoE: ' +
-      data.situacaoPppoe +
-      ' ' +
-      data.acessoRemoto +
-      ' / ' +
-      data.marcaModelo +
-      '\n'
+  if (data.situacaoPppoe) {
+    screening += '> PPPoE: Ativo '
+
+    if (data.acessoRemoto) {
+      screening += '+ Acesso remoto / '
+    } else {
+      screening += '/ Sem acesso remoto / '
+    }
+
+    screening += data.marcaModelo + '\n'
   } else {
-    screening += '> PPPoE: ' + data.situacaoPppoe + '\n'
+    screening += '> PPPoE: Inativo\n'
   }
 
-  if (data.pontoAdicional === 'Sim') {
-    screening +=
-      '> Segundo ponto: ' +
-      data.pontoAdicional +
-      ' ' +
-      data.acessoRemoto2 +
-      ' / ' +
-      data.marcaModeloPontoAdicional +
-      '\n'
+  if (data.pontoAdicional) {
+    screening += '> Segundo ponto: Sim '
+
+    if (data.acessoRemoto2) {
+      screening += '+ Acesso remoto / '
+    } else {
+      screening += '/ Sem acesso remoto / '
+    }
+
+    screening += data.marcaModeloPontoAdicional + '\n'
   } else {
-    screening += '> Segundo ponto: ' + data.pontoAdicional + '\n'
+    screening += '> Segundo ponto: Não\n'
   }
 
   screening +=
     '> Extrato de conexão: ' + data.quedas + ' Quedas constatadas' + '\n\n'
   screening += 'Defeito reclamado: ' + data.defeito + '\n\n'
 
-  if (data.quedaMassiva === 'Sim') {
+  if (data.quedaMassiva) {
     screening += 'Verificado demais clientes inativos no mesmo horário:\n'
 
     screening += data.clientesAfetados

@@ -74,19 +74,31 @@ export const generateScreening = (data: Triagem) => {
   if (data.pontoAdicional) {
     screening += '> Segundo ponto: Sim '
 
-    if (data.acessoRemoto2) {
-      screening += '+ Acesso remoto / '
+    if (data.mesh) {
+      screening +=
+        '/ ' +
+        data.meshQuantity +
+        ' roteadores em Mesh / ' +
+        data.meshType +
+        '\n'
     } else {
-      screening += '/ Sem acesso remoto / '
-    }
+      if (data.acessoRemoto2) {
+        screening += '+ Acesso remoto / '
+      } else {
+        screening += '/ Sem acesso remoto / '
+      }
 
-    screening += data.marcaModeloPontoAdicional + '\n'
+      screening += data.marcaModeloPontoAdicional + '\n'
+    }
   } else {
     screening += '> Segundo ponto: Não\n'
   }
 
   screening +=
-    '> Extrato de conexão: ' + data.quedas + ' Quedas constatadas' + '\n\n'
+    '> Extrato de conexão: ' +
+    data.quedas +
+    ' quedas constatadas nos últimos 30 dias' +
+    '\n\n'
   screening += 'Defeito reclamado: ' + data.defeito + '\n\n'
 
   if (data.quedaMassiva) {

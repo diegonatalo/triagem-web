@@ -40,6 +40,7 @@ export default function Home() {
   const alarme = watch('alarme')
   const pppoe = watch('situacaoPppoe', true)
   const pontoAdicional = watch('pontoAdicional', false)
+  const mesh = watch('mesh', false)
   const quedaMassiva = watch('quedaMassiva', false)
 
   const [date, setDate] = useState('')
@@ -293,31 +294,64 @@ export default function Home() {
         ></Controller>
 
         {pontoAdicional && (
-          <>
-            <Controller
-              control={control}
-              name="acessoRemoto2"
-              defaultValue={true}
-              render={({ field }) => {
-                return (
-                  <RadixToggle
-                    title="Acesso remoto"
-                    onPressChange={field.onChange}
-                    {...field}
-                  />
-                )
-              }}
-            ></Controller>
-
-            <input
-              list="modelsList"
-              placeholder="Marca/Modelo"
-              required
-              {...register('marcaModeloPontoAdicional')}
-            />
-          </>
+          <Controller
+            control={control}
+            name="mesh"
+            defaultValue={false}
+            render={({ field }) => {
+              return (
+                <RadixToggle
+                  title="Mesh"
+                  defaultPressed={false}
+                  onPressChange={field.onChange}
+                  {...field}
+                />
+              )
+            }}
+          ></Controller>
         )}
       </div>
+
+      {pontoAdicional && mesh && (
+        <div className="flex w-full gap-3">
+          <input
+            placeholder="Quantidade"
+            required
+            {...register('meshQuantity')}
+          />
+
+          <select required {...register('meshType')}>
+            <option value="Wifi">Wifi</option>
+            <option value="Cabeado">Cabeado</option>
+          </select>
+        </div>
+      )}
+
+      {pontoAdicional && !mesh && (
+        <div className="flex w-full gap-3">
+          <Controller
+            control={control}
+            name="acessoRemoto2"
+            defaultValue={true}
+            render={({ field }) => {
+              return (
+                <RadixToggle
+                  title="Acesso remoto"
+                  onPressChange={field.onChange}
+                  {...field}
+                />
+              )
+            }}
+          ></Controller>
+
+          <input
+            list="modelsList"
+            placeholder="Marca/Modelo"
+            required
+            {...register('marcaModeloPontoAdicional')}
+          />
+        </div>
+      )}
 
       <div className="flex w-full gap-3">
         <input

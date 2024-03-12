@@ -23,6 +23,9 @@ export type Triagem = {
   pontoAdicional: boolean
   acessoRemoto2?: boolean
   marcaModeloPontoAdicional?: string
+  mesh?: boolean
+  meshQuantity?: string
+  meshType?: string
   quedas: string
   defeito: string
   quedaMassiva: boolean

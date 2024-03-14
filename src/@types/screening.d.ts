@@ -9,6 +9,10 @@ export type Triagem = {
   alarme: string
   alarmeDate?: string
   alarmeHour?: string
+  segundoAlarme?: boolean
+  alarme2?: string
+  alarme2Date?: string
+  alarme2Hour?: string
   lineQuality?: string
   slot: string
   pon: string
@@ -26,6 +30,9 @@ export type Triagem = {
   mesh?: boolean
   meshQuantity?: string
   meshType?: string
+  terceiroPonto?: boolean
+  acessoRemoto3?: boolean
+  marcaModeloTerceiroPonto?: string
   quedas: string
   defeito: string
   quedaMassiva: boolean

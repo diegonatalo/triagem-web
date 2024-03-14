@@ -31,6 +31,8 @@ export default function Home() {
     reset()
     setDate('')
     setTime('')
+    setDate2('')
+    setTime2('')
     setTimeout(() => location.reload(), 2000)
   })
 
@@ -38,22 +40,29 @@ export default function Home() {
   const status = watch('situacaoOnu', true)
   const coletivo = watch('coletivo', false)
   const alarme = watch('alarme')
+  const segundoAlarme = watch('segundoAlarme', false)
   const pppoe = watch('situacaoPppoe', true)
   const pontoAdicional = watch('pontoAdicional', false)
+  const terceiroPonto = watch('terceiroPonto', false)
   const mesh = watch('mesh', false)
   const quedaMassiva = watch('quedaMassiva', false)
 
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
+  const [date2, setDate2] = useState('')
+  const [time2, setTime2] = useState('')
 
-  const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleDateChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    setState: (s: string) => void
+  ) => {
     const inputValue = e.target.value.replace(/\D/g, '')
     if (inputValue.length <= 2) {
-      setDate(inputValue)
+      setState(inputValue)
     } else if (inputValue.length <= 4) {
-      setDate(inputValue.slice(0, 2) + '/' + inputValue.slice(2))
+      setState(inputValue.slice(0, 2) + '/' + inputValue.slice(2))
     } else {
-      setDate(
+      setState(
         inputValue.slice(0, 2) +
           '/' +
           inputValue.slice(2, 4) +
@@ -63,12 +72,15 @@ export default function Home() {
     }
   }
 
-  const handleTimeChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTimeChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    setState: (s: string) => void
+  ) => {
     const inputValue: string = e.target.value.replace(/\D/g, '')
     if (inputValue.length <= 2) {
-      setTime(inputValue)
+      setState(inputValue)
     } else {
-      setTime(inputValue.slice(0, 2) + ':' + inputValue.slice(2, 4))
+      setState(inputValue.slice(0, 2) + ':' + inputValue.slice(2, 4))
     }
   }
 
@@ -180,7 +192,7 @@ export default function Home() {
           {...register('alarmeDate')}
           required={alarme !== 'Sem Alarme'}
           value={date}
-          onChange={handleDateChange}
+          onChange={(e) => handleDateChange(e, setDate)}
         />
 
         <input
@@ -188,9 +200,57 @@ export default function Home() {
           {...register('alarmeHour')}
           required={alarme !== 'Sem Alarme'}
           value={time}
-          onChange={handleTimeChange}
+          onChange={(e) => handleTimeChange(e, setTime)}
         />
       </div>
+
+      <div className="flex w-full gap-3">
+        <Controller
+          control={control}
+          name="segundoAlarme"
+          defaultValue={false}
+          render={({ field }) => {
+            return (
+              <RadixToggle
+                title="2° Alarme"
+                defaultPressed={false}
+                onPressChange={field.onChange}
+                {...field}
+              />
+            )
+          }}
+        ></Controller>
+      </div>
+
+      {segundoAlarme && (
+        <div className="flex w-full gap-3">
+          <select required {...register('alarme2')}>
+            <option value="">2° Alarme</option>
+            <option value="Link Loss (COD 1)">Link Loss</option>
+            <option value="Dying Gasp (COD 2)">Dying Gasp</option>
+            <option value="SUF (COD 3)">SUF</option>
+            <option value="Down Bip (COD 4)">Down Bip</option>
+            <option value="Up Bip (COD 4)">Up Bip</option>
+            <option value="Board Abort (COD 5)">Board Abort</option>
+          </select>
+
+          <input
+            placeholder="Data"
+            {...register('alarme2Date')}
+            required
+            value={date2}
+            onChange={(e) => handleDateChange(e, setDate2)}
+          />
+
+          <input
+            placeholder="Hora"
+            {...register('alarme2Hour')}
+            required
+            value={time2}
+            onChange={(e) => handleTimeChange(e, setTime2)}
+          />
+        </div>
+      )}
 
       <div className="flex w-full gap-3">
         <input placeholder="Slot" required {...register('slot')} />
@@ -328,29 +388,75 @@ export default function Home() {
       )}
 
       {pontoAdicional && !mesh && (
-        <div className="flex w-full gap-3">
-          <Controller
-            control={control}
-            name="acessoRemoto2"
-            defaultValue={true}
-            render={({ field }) => {
-              return (
-                <RadixToggle
-                  title="Acesso remoto"
-                  onPressChange={field.onChange}
-                  {...field}
-                />
-              )
-            }}
-          ></Controller>
+        <>
+          <div className="flex w-full gap-3">
+            <Controller
+              control={control}
+              name="acessoRemoto2"
+              defaultValue={true}
+              render={({ field }) => {
+                return (
+                  <RadixToggle
+                    title="Acesso remoto"
+                    onPressChange={field.onChange}
+                    {...field}
+                  />
+                )
+              }}
+            ></Controller>
 
-          <input
-            list="modelsList"
-            placeholder="Marca/Modelo"
-            required
-            {...register('marcaModeloPontoAdicional')}
-          />
-        </div>
+            <input
+              list="modelsList"
+              placeholder="Marca/Modelo"
+              required
+              {...register('marcaModeloPontoAdicional')}
+            />
+          </div>
+
+          <div className="flex w-full gap-3">
+            <Controller
+              control={control}
+              name="terceiroPonto"
+              defaultValue={false}
+              render={({ field }) => {
+                return (
+                  <RadixToggle
+                    title="Terceiro ponto"
+                    defaultPressed={false}
+                    onPressChange={field.onChange}
+                    {...field}
+                  />
+                )
+              }}
+            ></Controller>
+
+            {terceiroPonto && (
+              <>
+                <Controller
+                  control={control}
+                  name="acessoRemoto3"
+                  defaultValue={true}
+                  render={({ field }) => {
+                    return (
+                      <RadixToggle
+                        title="Acesso remoto"
+                        onPressChange={field.onChange}
+                        {...field}
+                      />
+                    )
+                  }}
+                ></Controller>
+
+                <input
+                  list="modelsList"
+                  placeholder="Marca/Modelo"
+                  required
+                  {...register('marcaModeloTerceiroPonto')}
+                />
+              </>
+            )}
+          </div>
+        </>
       )}
 
       <div className="flex w-full gap-3">

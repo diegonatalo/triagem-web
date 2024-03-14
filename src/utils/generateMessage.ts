@@ -32,7 +32,18 @@ export const generateScreening = (data: Triagem) => {
   }
 
   if (data.alarmeDate) {
-    screening += ' | ' + data.alarmeDate + ' - ' + data.alarmeHour + '\n'
+    screening += ' | ' + data.alarmeDate + ' - ' + data.alarmeHour
+  }
+
+  if (data.segundoAlarme) {
+    screening +=
+      ' / ' +
+      data.alarme2 +
+      ' | ' +
+      data.alarme2Date +
+      ' - ' +
+      data.alarme2Hour +
+      '\n'
   } else {
     screening += '\n'
   }
@@ -92,6 +103,18 @@ export const generateScreening = (data: Triagem) => {
     }
   } else {
     screening += '> Segundo ponto: Não\n'
+  }
+
+  if (data.terceiroPonto) {
+    screening += '> Terceiro ponto: Sim '
+
+    if (data.acessoRemoto3) {
+      screening += '+ Acesso remoto / '
+    } else {
+      screening += '/ Sem acesso remoto / '
+    }
+
+    screening += data.marcaModeloTerceiroPonto + '\n'
   }
 
   screening +=
